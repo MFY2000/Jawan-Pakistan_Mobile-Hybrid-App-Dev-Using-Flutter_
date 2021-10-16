@@ -14,13 +14,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> list = [
-      {"Image": "assests/Images/1.png", "Name": "Men FuelCell Echo", "Price": 99.99, "Tag": "New", "Raging": 5, "Category": "Mens"},
+    List<Map<String, dynamic>> productMap = [
+      {"Image": "assests/Images/1.png", "Name": "Men \nFuelCell Echo", "Price": 99.99, "Tag": "New", "Rating": 5, "Category": "Mens"},
       
-      {"Image": "assests/Images/2.png","Name": "Men FuelCell Rebel", "Price": 129.99, "Tag": "Exclusion", "Raging": 5, "Category": "Mens"}
+      {"Image": "assests/Images/2.png","Name": "Men FuelCell \nRebel", "Price": 129.99, "Tag": "Exclusion", "Rating": 5, "Category": "Mens"}
       
       ];
-      List<String> items = List<String>.generate(10000, (i) => 'Item $i');
 
 
     return MaterialApp(
@@ -30,67 +29,86 @@ class MyApp extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          // backgroundColor: Colors.transparent,
-          shadowColor: Colors.blueGrey[50],
-          // elevation: 0,
-          leading: Container(width: 8, height: 8, 
-            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assests/Images/logo.png"), fit: BoxFit.contain)
-          )),
-          
-          actions: [Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.search, color: Colors.black,),
-          )],
-          title: RichText(
-            text: const TextSpan(
-              text: "mobi",
-              style: TextStyle(
-                wordSpacing: 8,
-                letterSpacing: 1,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+          backgroundColor: Color(0xFFE8E8E8),
+          title: Row(
+            children: [
+              Image.asset(
+                'assests/Images/logo.png',
+                height: 30,
               ),
-
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'sport',
-                  style: TextStyle(
-                    letterSpacing: 1,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w200,
-                  )
-                )
-              ]
-            ),
+              SizedBox(
+                width: 5,
+              ),
+              RichText(
+                text: TextSpan(
+                    text: 'mobi',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 19,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'sport',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                    ]),
+              ),
+            ],
           ),
+          actions: [
+            Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            SizedBox(
+              width: 13,
+            )
+          ],
         ),
+
           
         bottomNavigationBar: BottomNavigationBar(
-            showUnselectedLabels: true,
-            backgroundColor: Colors.blueGrey[100],
-            unselectedItemColor: Color(0xFFE57373),
-            selectedItemColor: Color(0xFFE57373),
+
+          type: BottomNavigationBarType.fixed,
+          // fixedColor: Colors.red,
+          // selectedLabelStyle: TextStyle(
+          //   fontWeight: FontWeight.bold,
+          // ),
+          // unselectedLabelStyle: TextStyle(
+          //   fontWeight: FontWeight.bold,
+          // ),
+          selectedItemColor: Color(0xFFE57373),
+          unselectedItemColor: Color(0xFFE57373),
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+
             items: const <BottomNavigationBarItem> [
             
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined, color: Color(0xFFE57373)),
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined, color: Color(0xFFE57373),),
               label: "Home"),
 
-            BottomNavigationBarItem(icon: Icon(Icons.directions_transit, color: Color(0xFFE57373)),
+            BottomNavigationBarItem(icon: Icon(Icons.grain_outlined, color: Color(0xFFE57373),),
               label:"Catalog"),
      
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined, color: Color(0xFFE57373)),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined, color: Color(0xFFE57373),),
               label: "Bag"),
 
-            BottomNavigationBarItem(icon: Icon(Icons.person_outline_outlined, color: Color(0xFFE57373)),
+            BottomNavigationBarItem(icon: Icon(Icons.person_outline_outlined, color: Color(0xFFE57373),),
               label: "Profile"),
 
-            BottomNavigationBarItem(icon: Icon(Icons.more_horiz_outlined, color: Color(0xFFE57373)),
+            BottomNavigationBarItem(icon: Icon(Icons.more_horiz_outlined, color: Color(0xFFE57373),),
               label: "More"),
           ],
         
         ),
 
-        body: Body(itemsmy: items),
+        body: Body(productMap: productMap),
 
         // body: ...
       ),
@@ -98,6 +116,9 @@ class MyApp extends StatelessWidget {
     );
   }
 
+}
+
+setState(int Function() param0) {
 }
 
 

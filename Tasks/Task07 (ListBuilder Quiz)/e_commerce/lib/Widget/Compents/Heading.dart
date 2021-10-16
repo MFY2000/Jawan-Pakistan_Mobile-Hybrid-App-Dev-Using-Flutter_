@@ -14,8 +14,11 @@ class Heading extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-        Text("Running", style: TextStyle(color: Colors.black87, fontSize: 21, fontWeight: FontWeight.w900),),
-        Text("${value} results", style: TextStyle(color: Colors.black54, fontSize: 15,))],
+        
+        Text("Running", style: TextStyle( fontWeight: FontWeight.bold,fontSize: 22),),
+        Text("${value} results", style: TextStyle(color: Colors.grey[500],fontWeight: FontWeight.bold,fontSize: 17,))
+        
+        ],
       ),
     );
   }
