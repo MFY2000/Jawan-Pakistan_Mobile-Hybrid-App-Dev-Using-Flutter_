@@ -25,7 +25,7 @@ class SingleItem extends StatelessWidget {
         ),
         ]
     ),
-      
+      child: Text("13"),
     );
   }
 }

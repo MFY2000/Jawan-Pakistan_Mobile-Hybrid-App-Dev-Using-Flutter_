@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       {"Image": "assests/Images/2.png","Name": "Men FuelCell Rebel", "Price": 129.99, "Tag": "Exclusion", "Raging": 5, "Category": "Mens"}
       
       ];
+      List<String> items = List<String>.generate(10000, (i) => 'Item $i');
 
 
     return MaterialApp(
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          // backgroundColor: Colors.transparent,
           shadowColor: Colors.blueGrey[50],
           // elevation: 0,
           leading: Container(width: 8, height: 8, 
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
         
         ),
 
-        body: Body(Items: list),
+        body: Body(itemsmy: items),
 
         // body: ...
       ),
