@@ -14,13 +14,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> list = [
+    List<Map<String, dynamic>> productList = [
       {"Image": "assests/Images/1.png", "Name": "Men FuelCell Echo", "Price": 99.99, "Tag": "New", "Raging": 5, "Category": "Mens"},
       
       {"Image": "assests/Images/2.png","Name": "Men FuelCell Rebel", "Price": 129.99, "Tag": "Exclusion", "Raging": 5, "Category": "Mens"}
       
       ];
-      List<String> items = List<String>.generate(10000, (i) => 'Item $i');
 
 
     return MaterialApp(
@@ -30,39 +29,45 @@ class MyApp extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          // backgroundColor: Colors.transparent,
-          shadowColor: Colors.blueGrey[50],
-          // elevation: 0,
-          leading: Container(width: 8, height: 8, 
-            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assests/Images/logo.png"), fit: BoxFit.contain)
-          )),
-          
-          actions: [Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.search, color: Colors.black,),
-          )],
-          title: RichText(
-            text: const TextSpan(
-              text: "mobi",
-              style: TextStyle(
-                wordSpacing: 8,
-                letterSpacing: 1,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+          backgroundColor: Color(0xFFE8E8E8),
+          title: Row(
+            children: [
+              Image.asset(
+                'assests/Images/logo.png',
+                height: 30,
+               ),
+              SizedBox(
+                width: 5,
               ),
-
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'sport',
-                  style: TextStyle(
-                    letterSpacing: 1,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w200,
-                  )
-                )
-              ]
-            ),
+              RichText(
+                text: TextSpan(
+                    text: 'mobi',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 19,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'sport',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                    ]),
+              ),
+            ],
           ),
+          actions: [
+            Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            SizedBox(
+              width: 13,
+            )
+          ],
         ),
           
         bottomNavigationBar: BottomNavigationBar(
@@ -90,7 +95,7 @@ class MyApp extends StatelessWidget {
         
         ),
 
-        body: Body(itemsmy: items),
+        body: Body(productMap: productList),
 
         // body: ...
       ),
