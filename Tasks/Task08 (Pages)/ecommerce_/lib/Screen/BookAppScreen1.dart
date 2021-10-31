@@ -5,16 +5,7 @@ import 'package:ecommerce_/Custom/BookApp/BooksList.dart';
 import 'package:ecommerce_/Model/BookModel.dart';
 import 'package:flutter/material.dart';
 
-List<BookModel> popularBook = [
-  BookModel(
-    image:
-        "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F23%2F2018%2F07%2F27%2Fgreat-books-to-read-ichigo-ichie-crop.jpg",
-    subTiitle: "30 Interest",
-    title: "ICHEIF",
-    star: 2.5, details: '', price: 55  
-  ),
-  
-];
+
 
 class BookAppScreen1 extends StatelessWidget {
   const BookAppScreen1({Key? key}) : super(key: key);
@@ -41,9 +32,7 @@ class BookAppScreen1 extends StatelessWidget {
 
             
             BooksList(name: "Popular Book", bookList: popularBook),
-
-            
-            BooksList(name: "Bestsellers", bookList: popularBook),
+            BooksList(name: "Bestsellers", bookList: bestsellers),
           ],
         ),
     );

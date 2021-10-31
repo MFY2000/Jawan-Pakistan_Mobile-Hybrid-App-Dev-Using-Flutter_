@@ -64,7 +64,7 @@ class BookDetails extends StatelessWidget {
                   image: NetworkImage(book.image),
                   width: (width * 0.5),
                   height: (height * 0.45)),
-              // SizedBox(height: (height * 0.0125)),
+              SizedBox(height: (height * 0.009)),
               Text(
                 book.title,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
