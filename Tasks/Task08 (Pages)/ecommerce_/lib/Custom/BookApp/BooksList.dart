@@ -19,7 +19,7 @@ class BooksList extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.only(left: (height * 0.005)),
+      padding: EdgeInsets.only(left: (height * 0.035)),
       alignment: Alignment.centerLeft,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,7 +28,7 @@ class BooksList extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.only(
-                top: (height * 0.035), bottom: (height * 0.065)),
+                top: (height * 0.065), bottom: (height * 0.035)),
             child: Text(name,
                 style: TextStyle(
                   fontSize: 25,
