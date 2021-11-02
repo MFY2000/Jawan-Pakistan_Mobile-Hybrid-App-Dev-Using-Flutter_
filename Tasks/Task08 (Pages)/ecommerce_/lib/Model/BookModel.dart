@@ -15,22 +15,48 @@ class BookModel {
 List<BookModel> popularBook = [
   BookModel(
     image:
-        "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F23%2F2018%2F07%2F27%2Fgreat-books-to-read-ichigo-ichie-crop.jpg",
-    subTiitle: "30 Interest",
-    title: "ICHEIF",
+        "images/Books/pic1.png",
+    subTiitle: "ICHEIF",
+    title: "30 Interest",
     star: 2.5, details: '', price: 55  
   ),
-  
+    BookModel(
+    image:
+        "images/Books/pic2.png",
+    subTiitle: "ICHEIF",
+    title: "30 Interest",
+    star: 2.5, details: '', price: 55  
+  ),
+  BookModel(
+    image:
+        "images/Books/pic3.png",
+    subTiitle: "ICHEIF",
+    title: "30 Interest",
+    star: 2.5, details: '', price: 55  
+  ),
 ];
 
 
 List<BookModel> bestsellers = [
   BookModel(
     image:
-        "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F23%2F2018%2F07%2F27%2Fgreat-books-to-read-ichigo-ichie-crop.jpg",
-    subTiitle: "30 Interest",
-    title: "ICHEIF",
+        "images/Books/pic1.png",
+    subTiitle: "ICHEIF",
+    title: "30 Interest",
     star: 2.5, details: '', price: 55  
   ),
-  
+  BookModel(
+    image:
+        "images/Books/pic2.png",
+    subTiitle: "ICHEIF",
+    title: "30 Interest",
+    star: 2.5, details: '', price: 55  
+  ),
+  BookModel(
+    image:
+        "images/Books/pic3.png",
+    subTiitle: "ICHEIF",
+    title: "30 Interest",
+    star: 2.5, details: '', price: 55  
+  ),
 ];
