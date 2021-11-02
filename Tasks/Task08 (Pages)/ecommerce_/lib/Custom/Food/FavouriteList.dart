@@ -24,12 +24,7 @@ class _FavouriteListState extends State<FavouriteList> {
         scrollDirection: Axis.horizontal,
         itemCount: FoodList.length,
         itemBuilder: (context, index) {
-          return InkWell(onTap:()=>{
-            Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => FoodAppScreenApp2()),
-        )
-          } ,child: FavouriteCard(foodItem: FoodList[index]));
+          return FavouriteCard(foodItem: FoodList[index],item: index);
         },
       ),
     );
