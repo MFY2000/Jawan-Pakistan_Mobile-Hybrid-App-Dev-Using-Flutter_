@@ -36,13 +36,36 @@ class FoodModel {
         );
       } else {
         lst.add(Icon(
-          Icons.star,
-          color: Colors.white,
+          Icons.star_border,
+          color: Colors.yellowAccent,
         ));
       }
     }
     return lst;
   }
+}
+
+
+class Fooddetails{
+  late int currentIndex;
+  late int afterCurrentIndex;
+  late int beforeCurrentIndex;
+
+  Fooddetails(int index){
+    currentIndex = index;
+    if ((index + 1) < (FoodList.length)) {
+      afterCurrentIndex = 0;
+    } else {
+      afterCurrentIndex = (index + 1);
+    }
+    if ((index - 1) > 0) {
+      beforeCurrentIndex = (FoodList.length);
+    } else {
+      beforeCurrentIndex = (index - 1);
+    }
+  }
+
+  
 }
 
 List<FoodModel> FoodList = [
@@ -53,27 +76,27 @@ List<FoodModel> FoodList = [
       image: "images/chickenBurger.png",
       details:
           "With Extra Souse I Confirm that the information I have provided is accurate and truthful to the best of my knowledge. I also understand that dishonesty may be subject to consequences under the Student Code of Conduct.",
-      count: 0,
-      rating: 5),
+      count: 1,
+      rating: 3.5),
   FoodModel(
     title: "Orignal Fried Shrimp",
     price: 6.9,
     image: "images/chickenBurger.png",
     subtitle: "With Extra Souse",
-    rating: 4.5,
+    rating: 2.5,
     details:
         "With Extra Souse I Confirm that the information I have provided is accurate and truthful to the best of my knowledge. I also understand that dishonesty may be subject to consequences under the Student Code of Conduct.",
-    count: 0,
+    count: 1,
   ),
   FoodModel(
     title: "Spicy Chicken Noodles",
     price: 7.9,
     image: "images/chickenBurger.png",
     subtitle: "With Extra Chicken",
-    rating: 4.5,
+    rating: 1.5,
     details:
         "With Extra Souse I Confirm that the information I have provided is accurate and truthful to the best of my knowledge. I also understand that dishonesty may be subject to consequences under the Student Code of Conduct.",
-    count: 0,
+    count: 1,
   ),
   FoodModel(
     title: "Spicy Cheese Pizza",
@@ -83,17 +106,17 @@ List<FoodModel> FoodList = [
     rating: 4.5,
     details:
         "With Extra Souse I Confirm that the information I have provided is accurate and truthful to the best of my knowledge. I also understand that dishonesty may be subject to consequences under the Student Code of Conduct.",
-    count: 0,
+    count: 1,
   ),
   FoodModel(
     title: "Chinnese Pizza",
     price: 6.9,
     image: "images/meatPizza.png",
     subtitle: "With Extra Souse",
-    rating: 4.5,
+    rating: 5,
     details:
         "With Extra Souse I Confirm that the information I have provided is accurate and truthful to the best of my knowledge. I also understand that dishonesty may be subject to consequences under the Student Code of Conduct.",
-    count: 0,
+    count: 1,
   ),
   FoodModel(
       title: "Japanies Sochie",
@@ -102,6 +125,6 @@ List<FoodModel> FoodList = [
       subtitle: "With Tuna",
       details:
           "With Extra Souse I Confirm that the information I have provided is accurate and truthful to the best of my    knowledge. I also understand that dishonesty may be subject to consequences under the Student Code of Conduct.",
-      count: 0,
+      count: 1,
       rating: 4.5),
 ];
