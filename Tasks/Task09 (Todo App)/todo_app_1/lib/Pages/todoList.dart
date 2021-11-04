@@ -11,13 +11,13 @@ class todoList_ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: 
-    ListView.builder(itemCount: list.length ,itemBuilder: (context, index){
+    return ListView.builder(itemCount: list.length ,itemBuilder: (context, index){
+      shrinkWrap: false;
+      physic: NeverScrollableScrollPhysics();
       return ListTile(
-        title: Text(list[index].data),
+        title: Text("${list[index].data}"),
         
       );
-    })
-    );
+    });
   }
 }
