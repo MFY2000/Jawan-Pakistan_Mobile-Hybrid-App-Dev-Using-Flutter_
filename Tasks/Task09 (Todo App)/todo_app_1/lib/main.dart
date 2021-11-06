@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_1/Custom/Menu.dart';
+import 'package:todo_app_1/Custom/listType.dart';
 import 'package:todo_app_1/Model/todo.dart';
 import 'package:todo_app_1/Pages/todoList.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        // primarySwatch: const Color(0XFF003C6A),
       ),
       home: MyHomePage(),
     );
@@ -37,10 +39,24 @@ class _MyHomePageState extends State<MyHomePage> {
      widget.lst = lstTodo;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Todo List"),
-        actions: const [
-            Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.delete_rounded),),
-          ],
+        backgroundColor: const Color(0XFF003C6A),
+        foregroundColor: Colors.white,
+        title: listType(),
+
+        actions: const <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: Icon(Icons.search),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Menu(),
+          ),
+        ],
+
+        // actions: const [
+        //     Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.delete_rounded),),
+        //   ],
       ),
       body: todoList_(
         list: widget.lst,
