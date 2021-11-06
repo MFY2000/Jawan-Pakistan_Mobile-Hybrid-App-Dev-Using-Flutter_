@@ -10,16 +10,24 @@ class listType extends StatefulWidget {
 }
 
 class _listTypeState extends State<listType> {
-  late String dropdownValue;
+  late int dropdownValue = 0;
+  late List<IconData> iconList = [
+    Icons.check_circle_sharp,
+    Icons.close,
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.check_circle_sharp, color: Colors.white,),
-
-        SizedBox(width: 10,),
-
+        Icon(
+          iconList[dropdownValue],
+          color: Colors.white,
+          size: 24,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
         DropdownButton<String>(
           value: "All List",
           icon: const Icon(
@@ -30,10 +38,22 @@ class _listTypeState extends State<listType> {
           elevation: 16,
           style: const TextStyle(
             color: Colors.white,
+            fontSize: 16
           ),
-          onChanged: (String? newValue) {
+          onChanged: (newValue) {
             setState(() {
-              dropdownValue = newValue!;
+              switch (newValue) {
+                case 'All List':
+                  dropdownValue = 0;
+                  break;
+                case 'Missed':
+                  dropdownValue = 1;
+                  break;
+                case 'Done':
+                  dropdownValue = 0;
+                  break;
+                default:
+              }
             });
           },
           items: <String>['All List', 'Missed', 'Done']
@@ -42,7 +62,7 @@ class _listTypeState extends State<listType> {
               value: value,
               child: Text(
                 value,
-                style: const TextStyle(color: Color(0XFF036FB2)),
+                style: const TextStyle(color: Colors.black),
               ),
             );
           }).toList(),
