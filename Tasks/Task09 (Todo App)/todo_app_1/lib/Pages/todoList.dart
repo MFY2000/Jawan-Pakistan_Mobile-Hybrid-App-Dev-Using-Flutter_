@@ -13,15 +13,14 @@ class todoList_ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return ListView.builder(
         itemCount: list.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text("${list[index].data}"),
+          return Card(
+            child: ListTile(
+              title: Text(list[index].data),
+            ),
           );
-        },
-        separatorBuilder: (context, index) {
-          return const Divider();
         });
   }
 }
