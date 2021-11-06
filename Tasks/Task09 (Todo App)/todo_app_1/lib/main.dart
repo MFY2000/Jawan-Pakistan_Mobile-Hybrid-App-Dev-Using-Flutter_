@@ -36,12 +36,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-     widget.lst = lstTodo;
+    widget.lst = lstTodo;
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0XFF003C6A),
+        backgroundColor: const Color(0XFF026AA9),
         foregroundColor: Colors.white,
-        title: listType(),
+        title: const listType(),
 
         actions: const <Widget>[
           Padding(
@@ -58,14 +59,19 @@ class _MyHomePageState extends State<MyHomePage> {
         //     Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.delete_rounded),),
         //   ],
       ),
-      body: todoList_(
-        list: widget.lst,
+      body: Container(
+        color: const Color(0XFF003B69),
+        child: todoList_(
+          list: widget.lst,
+        ),
       ),
 
 
 
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
+        foregroundColor: const Color(0XFF036FB2),
+        backgroundColor: Colors.white,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
