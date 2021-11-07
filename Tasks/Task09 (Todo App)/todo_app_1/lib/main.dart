@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_1/Custom/Menu.dart';
 import 'package:todo_app_1/Custom/listType.dart';
 import 'package:todo_app_1/Model/todo.dart';
+import 'package:todo_app_1/Pages/AddTask.dart';
 import 'package:todo_app_1/Pages/todoList.dart';
 
 void main() {
@@ -69,11 +70,29 @@ class _MyHomePageState extends State<MyHomePage> {
         //     Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.delete_rounded),),
         //   ],
       ),
-      body: Container(
-        color: const Color(0XFF003B69),
-        child: todoList(
-          list: widget.lst,
-        ),
+      body: Column(
+        children: [
+          Container(
+            color: const Color(0XFF003B69),
+            child: todoList(
+              list: widget.lst,
+            ),
+          ),
+          Row(
+            children: const [
+              Icon(
+                Icons.keyboard_voice,
+                size: 10,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Add New Task',
+                ),
+              )
+            ],
+          ),
+        ],
       ),
 
       floatingActionButton: FloatingActionButton(
