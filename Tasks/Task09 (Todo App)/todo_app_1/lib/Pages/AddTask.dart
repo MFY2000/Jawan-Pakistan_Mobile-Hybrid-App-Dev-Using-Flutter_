@@ -1,10 +1,9 @@
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 
 class addTask extends StatefulWidget {
-  const addTask({ Key? key }) : super(key: key);
+  const addTask({Key? key}) : super(key: key);
 
   @override
   _addTaskState createState() => _addTaskState();
@@ -13,11 +12,8 @@ class addTask extends StatefulWidget {
 class _addTaskState extends State<addTask> {
   late double height = 0;
 
-
-
   @override
   Widget build(BuildContext context) {
-
     height = MediaQuery.of(context).size.height;
 
     return SingleChildScrollView(
@@ -25,11 +21,23 @@ class _addTaskState extends State<addTask> {
         children: [
           Container(
             color: Colors.transparent,
-            height: height * .8,
+            height: height * .9,
           ),
-
           Container(
-            
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.keyboard_voice,
+                  size: 10,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Add New Task',
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
