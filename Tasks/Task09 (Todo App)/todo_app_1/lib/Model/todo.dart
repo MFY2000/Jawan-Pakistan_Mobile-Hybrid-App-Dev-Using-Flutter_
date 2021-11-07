@@ -1,9 +1,10 @@
 class todoModel {
   String data;
   bool status;
+  late bool check;
 
 
-  todoModel({required this.data, required this.status});
+  todoModel({required this.data, required this.status, this.check = false});
 }
 
 List<todoModel> lstTodo = [
