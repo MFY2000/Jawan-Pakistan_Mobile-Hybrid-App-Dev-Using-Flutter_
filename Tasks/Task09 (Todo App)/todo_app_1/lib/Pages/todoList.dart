@@ -6,16 +6,24 @@ import 'package:todo_app_1/Model/todo.dart';
 
 
 
-class todoList_ extends StatelessWidget {
-  List<todoModel> list;
+class todoList extends StatefulWidget {
+ List<todoModel> list;
 
-  todoList_({
+  todoList({
     Key? key,
     required this.list,
   }) : super(key: key);
 
   @override
+  _todoListState createState() => _todoListState();
+}
+
+class _todoListState extends State<todoList> {
+
+  @override
   Widget build(BuildContext context) {
+    var list = widget.list;
+
     return ListView.builder(
         itemCount: list.length,
         itemBuilder: (context, index) {
@@ -28,14 +36,15 @@ class todoList_ extends StatelessWidget {
               color: const Color(0XFF004D80),
               child: ListTile(
                 leading: Checkbox(
-                  activeColor: Colors.white, 
-                  focusColor: Colors.white,
-                  checkColor: Colors.white,
-                  tristate:true,
-                  value: false,   
-                  onChanged: (bool? value) { abc(value); }
+                  
+                  value: list[index].check,   
+                  onChanged: (bool? value){
+                    setState(() {
+                      list[index].check = value!;
+                    });
+                  }
                   ),  
-                title: Text(list[index].data),
+                title: Text(list[index].data, style: const TextStyle(color: Colors.white),),
                 subtitle: Text(list[index].data),
               ),
             ),
@@ -43,7 +52,5 @@ class todoList_ extends StatelessWidget {
         });
   }
 
-  void abc(bool? a){
-    print(a);
-  }
+  
 }
