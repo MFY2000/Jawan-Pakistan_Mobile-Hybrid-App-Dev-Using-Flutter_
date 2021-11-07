@@ -17,7 +17,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // primarySwatch: const Color(0XFF003C6A),
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateColor.resolveWith(
+            (states) {
+              if (states.contains(MaterialState.selected)) {
+                return const Color(
+                    0XFF026AA9); // the color when checkbox is selected;
+              }
+              return Colors.white; //the color when checkbox is unselected;
+            },
+          ),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -61,12 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         color: const Color(0XFF003B69),
-        child: todoList_(
+        child: todoList(
           list: widget.lst,
         ),
       ),
-
-
 
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
@@ -76,6 +84,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-
   }
 }
