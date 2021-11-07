@@ -19,6 +19,7 @@ class _listTypeState extends State<listType> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           iconList[dropdownValue],
@@ -30,16 +31,16 @@ class _listTypeState extends State<listType> {
         ),
         DropdownButton<String>(
           value: "All List",
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16
+          ),
           icon: const Icon(
             Icons.keyboard_arrow_down,
             color: Colors.white,
           ),
           iconSize: 24,
-          elevation: 16,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16
-          ),
+          
           onChanged: (newValue) {
             setState(() {
               switch (newValue) {
@@ -56,13 +57,14 @@ class _listTypeState extends State<listType> {
               }
             });
           },
+
           items: <String>['All List', 'Missed', 'Done']
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(
                 value,
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.white,),
               ),
             );
           }).toList(),
