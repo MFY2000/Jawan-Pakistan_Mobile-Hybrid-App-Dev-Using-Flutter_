@@ -73,21 +73,25 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           Container(
+            height: MediaQuery.of(context).size.height * .9,
             color: const Color(0XFF003B69),
             child: todoList(
               list: widget.lst,
             ),
           ),
           Row(
-            children: const [
+            children: [
               Icon(
                 Icons.keyboard_voice,
                 size: 10,
               ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Add New Task',
+              Container(
+                width: MediaQuery.of(context).size.width * .8,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Add New Task',
+                  ),
                 ),
               )
             ],
