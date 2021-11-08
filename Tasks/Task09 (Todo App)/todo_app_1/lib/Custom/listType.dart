@@ -19,7 +19,7 @@ class _listTypeState extends State<listType> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Icon(
           iconList[dropdownValue],
@@ -35,9 +35,12 @@ class _listTypeState extends State<listType> {
             color: Colors.white,
             fontSize: 16
           ),
-          icon: const Icon(
-            Icons.keyboard_arrow_down,
-            color: Colors.white,
+          icon: const Padding(
+            padding: EdgeInsets.only(left: 16),
+            child:  Icon(
+              Icons.keyboard_arrow_down,
+              color: Colors.white,
+            ),
           ),
           iconSize: 24,
           
