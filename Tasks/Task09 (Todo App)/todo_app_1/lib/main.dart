@@ -88,8 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.zero,
-              margin: EdgeInsets.zero,
               height: MediaQuery.of(context).size.height * .1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .895,
+                    width: MediaQuery.of(context).size.width * .84,
                     child: const TextField(
                       decoration: InputDecoration(
                           labelText: 'Enter New Task Quickly',
