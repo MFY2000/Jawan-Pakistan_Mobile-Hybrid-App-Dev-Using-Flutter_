@@ -24,34 +24,36 @@ class _todoListState extends State<todoList> {
   Widget build(BuildContext context) {
     var list = widget.list;
 
-    return ListView.builder(
-        itemCount: list.length,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
+    return SingleChildScrollView(
+      child: ListView.builder(
+          itemCount: list.length,
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                color: const Color(0XFF004D80),
+                child: ListTile(
+                  leading: Checkbox(
+                    
+                    value: list[index].check,   
+                    onChanged: (bool? value){
+                      setState(() {
+                        list[index].check = value!;
+                      });
+                    }
+                    ),  
+                  title: Text(list[index].data, style: const TextStyle(color: Colors.white),),
+                  subtitle: Text(list[index].data),
+                ),
               ),
-              color: const Color(0XFF004D80),
-              child: ListTile(
-                leading: Checkbox(
-                  
-                  value: list[index].check,   
-                  onChanged: (bool? value){
-                    setState(() {
-                      list[index].check = value!;
-                    });
-                  }
-                  ),  
-                title: Text(list[index].data, style: const TextStyle(color: Colors.white),),
-                subtitle: Text(list[index].data),
-              ),
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 
   
