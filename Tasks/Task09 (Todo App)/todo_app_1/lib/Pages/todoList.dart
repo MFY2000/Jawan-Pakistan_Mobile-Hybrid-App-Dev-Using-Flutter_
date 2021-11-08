@@ -26,7 +26,8 @@ class _todoListState extends State<todoList> {
 
     return ListView.builder(
         itemCount: list.length,
-
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
