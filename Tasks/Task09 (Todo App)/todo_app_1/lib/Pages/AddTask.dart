@@ -16,7 +16,10 @@ class _addTaskState extends State<addTask> {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
 
-    return SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
+        child: SingleChildScrollView(
       child: Column(
         children: [
           Container(
@@ -40,6 +43,8 @@ class _addTaskState extends State<addTask> {
             ),
           )
         ],
+      ),
+    ),
       ),
     );
   }
