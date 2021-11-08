@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:todo_app_1/Custom/Menu.dart';
 import 'package:todo_app_1/Custom/listType.dart';
@@ -55,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
         foregroundColor: Colors.white,
         title: const listType(),
 
-        actions: const <Widget>[
+        // ignore: prefer_const_literals_to_create_immutables
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: Icon(Icons.search),
@@ -70,47 +73,65 @@ class _MyHomePageState extends State<MyHomePage> {
         //     Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.delete_rounded),),
         //   ],
       ),
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * .9,
-            color: const Color(0XFF003B69),
-            child: todoList(
-              list: widget.lst,
+      body: Container(
+        color: const Color(0XFF003B69),
+        padding: EdgeInsets.zero,
+        margin: EdgeInsets.zero,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              height: MediaQuery.of(context).size.height * .80,
+              child: todoList(
+                list: widget.lst,
+              ),
             ),
-          ),
-          Container(
-            height: 40,
-            
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.keyboard_voice,
-                  size: 10,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * .8,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Add New Task',
+            Container(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              height: MediaQuery.of(context).size.height * .1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      Icons.keyboard_voice,
+                      size: 26,
+                      color: Colors.white,
                     ),
                   ),
-                )
-              ],
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * .895,
+                    child: const TextField(
+                      decoration: InputDecoration(
+                          labelText: 'Enter New Task Quickly',
+                          labelStyle: TextStyle(color: Colors.white60),
+                          fillColor: Colors.white),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: OnPressedAdd_Btn,
         foregroundColor: const Color(0XFF036FB2),
         backgroundColor: Colors.white,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  OnPressedAdd_Btn() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => addTask()),
     );
   }
 }
