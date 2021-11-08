@@ -79,22 +79,27 @@ class _MyHomePageState extends State<MyHomePage> {
               list: widget.lst,
             ),
           ),
-          Row(
-            children: [
-              Icon(
-                Icons.keyboard_voice,
-                size: 10,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * .8,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Add New Task',
-                  ),
+          Container(
+            height: 40,
+            
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.keyboard_voice,
+                  size: 10,
                 ),
-              )
-            ],
+                Container(
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Add New Task',
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
