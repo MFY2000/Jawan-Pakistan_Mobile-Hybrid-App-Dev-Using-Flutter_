@@ -39,7 +39,6 @@ class _todoListState extends State<todoList> {
                 color: const Color(0XFF004D80),
                 child: ListTile(
                   leading: Checkbox(
-                    
                     value: list[index].check,   
                     onChanged: (bool? value){
                       setState(() {
@@ -47,8 +46,8 @@ class _todoListState extends State<todoList> {
                       });
                     }
                     ),  
-                  title: Text(list[index].data, style: const TextStyle(color: Colors.white),),
-                  subtitle: Text(list[index].data),
+                  title: Text(list[index].value, style: const TextStyle(color: Colors.white),),
+                  subtitle: Text(list[index].value),
                 ),
               ),
             );
