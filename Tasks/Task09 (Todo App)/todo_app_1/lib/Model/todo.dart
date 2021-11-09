@@ -1,17 +1,18 @@
 class todoModel {
-  String data;
+  String value;
+  String date;
   bool status;
   late bool check;
 
 
-  todoModel({required this.data, required this.status, this.check = false});
+  todoModel({required this.value, required this.status, this.check = false,required this.date});
 }
 
 List<todoModel> lstTodo = [
-  todoModel(data: "To go", status: false),
-  todoModel(data: "To go", status: false),
-  todoModel(data: "To go", status: false),
-  todoModel(data: "To go", status: false),
-  todoModel(data: "To go", status: false),
-  todoModel(data: "To go", status: false),
+  todoModel(value: "To go", status: false, date: ""),
+  todoModel(value: "To go", status: false, date: ""),
+  todoModel(value: "To go", status: false, date: ""),
+  todoModel(value: "To go", status: false, date: ""),
+  todoModel(value: "To go", status: false, date: ""),
+  todoModel(value: "To go", status: false, date: ""),
 ];
