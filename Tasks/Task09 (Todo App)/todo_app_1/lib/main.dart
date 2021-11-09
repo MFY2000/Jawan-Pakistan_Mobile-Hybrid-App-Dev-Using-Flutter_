@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
   OnPressedAdd_Btn() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => addTask()),
+      MaterialPageRoute(builder: (context) => addTask(index: widget.lst.length)),
     );
   }
 }
