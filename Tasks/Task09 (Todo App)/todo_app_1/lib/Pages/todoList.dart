@@ -8,10 +8,12 @@ import 'package:todo_app_1/Model/todo.dart';
 
 class todoList extends StatefulWidget {
  List<todoModel> list;
+ Function(int index) toSelect;
 
   todoList({
     Key? key,
     required this.list,
+    required this.toSelect,
   }) : super(key: key);
 
   @override
@@ -44,6 +46,7 @@ class _todoListState extends State<todoList> {
                       setState(() {
                         list[index].check = value!;
                       });
+                      widget.toSelect(index);
                     }
                     ),  
                   title: Text(list[index].value, style: const TextStyle(color: Colors.white),),
