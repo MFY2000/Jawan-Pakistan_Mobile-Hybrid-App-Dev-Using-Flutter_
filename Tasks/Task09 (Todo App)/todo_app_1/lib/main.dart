@@ -47,6 +47,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late List<int> indexToSelect = [];
+  late int opertionTodo;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    opertionTodo = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     widget.lst = lstTodo;
@@ -85,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: MediaQuery.of(context).size.height * .80,
               child: todoList(
                 list: widget.lst,
+                toSelect: onSelectToUpdate,
               ),
             ),
             Container(
@@ -117,19 +128,46 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: OnPressedAdd_Btn,
-        foregroundColor: const Color(0XFF036FB2),
+        onPressed: () => {
+          opertionTodo == 0
+              ? onPressedAddBtn(widget.lst.length)
+              : (opertionTodo == 1
+                  ? onPressedAddBtn(indexToSelect[0])
+                  : onPressedDeleteBtn)
+        },
+        foregroundColor: lstOperation[opertionTodo].color,
         backgroundColor: Colors.white,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        tooltip: lstOperation[opertionTodo].name,
+        child: Icon(lstOperation[opertionTodo].iconData),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  OnPressedAdd_Btn() {
+  onSelectToUpdate(int index) {
+    if (indexToSelect.isEmpty) {
+      opertionTodo = 1;
+    } else {
+      opertionTodo = 2;
+    }
+    setState(() {
+      indexToSelect.add(index);
+    });
+  }
+
+  onPressedAddBtn(int index) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => addTask(index: widget.lst.length)),
+      MaterialPageRoute(builder: (context) => addTask(index: index)),
     );
+  }
+
+  onPressedDeleteBtn() {
+    for (var item in indexToSelect) {
+      setState(() {
+        widget.lst.removeAt(item);
+      });
+    }
+    indexToSelect = [];
+    opertionTodo = 0;
   }
 }
