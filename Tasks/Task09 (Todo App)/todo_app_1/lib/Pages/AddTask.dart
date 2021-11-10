@@ -152,12 +152,12 @@ class _addTaskState extends State<addTask> {
         });
       }
       setState(() { todo.value = taskInput.value.text; });
-      Navigator.pop(context);
+      goBack();
     }
   }
 
-  GoBack(){
-    Navigator.pop(context);
+  goBack(){
+    Navigator.pop(context, false);
   }
   
 }
