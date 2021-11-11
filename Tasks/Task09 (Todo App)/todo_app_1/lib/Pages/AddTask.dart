@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:todo_app_1/Model/todo.dart';
+import 'package:todo_app_1/main.dart';
 
 class addTask extends StatefulWidget {
   final int index;
@@ -157,7 +158,10 @@ class _addTaskState extends State<addTask> {
   }
 
   goBack(){
-    Navigator.pop(context, false);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MyHomePage()),
+    );
   }
   
 }
