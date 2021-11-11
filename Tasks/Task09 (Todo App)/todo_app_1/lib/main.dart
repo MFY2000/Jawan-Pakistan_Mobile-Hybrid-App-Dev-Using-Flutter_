@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ? onPressedAddBtn(widget.lst.length)
               : (opertionTodo == 1
                   ? onPressedAddBtn(indexToSelect[0])
-                  : onPressedDeleteBtn)
+                  : onPressedDeleteBtn())
         },
         foregroundColor: lstOperation[opertionTodo].color,
         backgroundColor: Colors.white,
@@ -144,30 +144,38 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   onSelectToUpdate(int index) {
-    if (indexToSelect.isEmpty) {
-      opertionTodo = 1;
-    } else {
-      opertionTodo = 2;
-    }
     setState(() {
-      indexToSelect.add(index);
+      if (indexToSelect.contains(index)) {
+        indexToSelect.remove(index);
+      } else {
+        indexToSelect.add(index);
+      }
     });
+
+    opertionTodo = (indexToSelect.length < 2 ? indexToSelect.length : 2);
   }
 
   onPressedAddBtn(int index) {
-    Navigator.push(
+    setState(() {
+      widget.lst = lstTodo;
+      indexToSelect = [];
+      opertionTodo = 0;
+    });
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => addTask(index: index)),
     );
   }
 
   onPressedDeleteBtn() {
-    for (var item in indexToSelect) {
-      setState(() {
-        widget.lst.removeAt(item);
-      });
-    }
-    indexToSelect = [];
-    opertionTodo = 0;
+    setState(() {
+      for (var item in indexToSelect) {
+        lstTodo[item].toRefresh();
+        lstTodo.removeAt(item);
+      }
+      widget.lst = lstTodo;
+      indexToSelect = [];
+      opertionTodo = 0;
+    });
   }
 }
