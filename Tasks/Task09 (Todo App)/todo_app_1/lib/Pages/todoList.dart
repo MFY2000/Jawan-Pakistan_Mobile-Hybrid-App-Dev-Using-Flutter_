@@ -3,12 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_1/Model/todo.dart';
 
-
-
-
 class todoList extends StatefulWidget {
- List<todoModel> list;
- Function(int index) toSelect;
+  List<todoModel> list;
+  Function(int index) toSelect;
 
   todoList({
     Key? key,
@@ -21,7 +18,6 @@ class todoList extends StatefulWidget {
 }
 
 class _todoListState extends State<todoList> {
-
   @override
   Widget build(BuildContext context) {
     var list = widget.list;
@@ -41,15 +37,17 @@ class _todoListState extends State<todoList> {
                 color: const Color(0XFF004D80),
                 child: ListTile(
                   leading: Checkbox(
-                    value: list[index].check,   
-                    onChanged: (bool? value){
-                      setState(() {
-                        list[index].check = value!;
-                      });
-                      widget.toSelect(index);
-                    }
-                    ),  
-                  title: Text(list[index].value, style: const TextStyle(color: Colors.white),),
+                      value: list[index].check,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          list[index].check = value!;
+                        });
+                        widget.toSelect(index);
+                      }),
+                  title: Text(
+                    list[index].value,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   subtitle: Text(list[index].value),
                 ),
               ),
@@ -57,6 +55,4 @@ class _todoListState extends State<todoList> {
           }),
     );
   }
-
-  
 }
