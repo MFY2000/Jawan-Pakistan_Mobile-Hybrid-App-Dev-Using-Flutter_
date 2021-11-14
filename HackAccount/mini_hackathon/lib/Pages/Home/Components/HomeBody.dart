@@ -6,7 +6,8 @@ import 'package:mini_hackathon/Pages/Home/Components/Product/ProductSlider.dart'
 
 
 class HomeBody extends StatefulWidget {
-  const HomeBody({ Key? key }) : super(key: key);
+  Function(int index) function;
+  HomeBody({ Key? key,required this.function }) : super(key: key);
 
   @override
   _HomeBodyState createState() => _HomeBodyState();
@@ -19,7 +20,7 @@ class _HomeBodyState extends State<HomeBody> {
       child: Column(
         children: [
           CategorySlider(),
-          ProductSlider(),
+          ProductSlider(AddToCart: widget.function),
         ],
       ),
     );

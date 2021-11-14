@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:mini_hackathon/Custom/BottomNav.dart';
+import 'package:mini_hackathon/Pages/About/About.dart';
 import 'package:mini_hackathon/Pages/AddToCart/AddToCart.dart';
 import 'package:mini_hackathon/Pages/Home/Components/HomeBody.dart';
+import 'package:mini_hackathon/Pages/Login/LoginScreen.dart';
 import 'package:mini_hackathon/model/Product.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          foregroundColor: Colors.deepOrange,
           backgroundColor: Colors.white,
           title: Text(
             "Home Page",
@@ -65,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: SingleChildScrollView(
-          child: HomeBody(),
+          child: HomeBody(function: onAddToCart),
         ),
         drawer: Drawer(
           child: ListView(
@@ -87,26 +90,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: Icon(Icons.login),
                 title: Text("Logout"),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
               ),
               ListTile(
                 leading: Icon(Icons.shopping_cart_rounded),
-                title: Text("Settings"),
+                title: Text("Cart"),
                 onTap: () {
-                  Navigator.pop(context);
+                   Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => AddToCart()));
                 },
               ),
               ListTile(
-                leading: Icon(Icons.contacts),
-                title: Text("Contact Us"),
+                leading: Icon(Icons.favorite),
+                title: Text("Favorite"),
                 onTap: () {
-                  Navigator.pop(context);
+                   Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => AboutPage()));
                 },
               ),
             ],
           ),
         ),
         bottomNavigationBar: BootomNavigate());
+  }
+
+
+  onAddToCart(int index) {
+    if (!LstAddToCart.contains(index)) {
+      setState(() {
+        LstAddToCart.add(index);
+      });
+    }
   }
 }

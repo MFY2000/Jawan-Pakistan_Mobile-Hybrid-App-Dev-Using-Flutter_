@@ -7,7 +7,8 @@ import 'package:mini_hackathon/Pages/Home/Components/Product/ProductCard.dart';
 import 'package:mini_hackathon/model/Product.dart';
 
 class ProductSlider extends StatelessWidget {
-  ProductSlider({Key? key}) : super(key: key);
+  Function(int index) AddToCart;
+  ProductSlider({Key? key, required this.AddToCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ProductSlider extends StatelessWidget {
         
         itemCount: LstProduct.length,
         itemBuilder: (context, index) {
-          return ProductCard(item: LstProduct[index], index: index,);
+          return ProductCard(item: LstProduct[index], index: index, AddToCart: AddToCart);
         });
   }
 }

@@ -17,8 +17,15 @@ class AddToCart extends StatelessWidget {
           
           itemCount: LstAddToCart.length,
           itemBuilder: (context, index) {
-            return ProductCard(item: LstProduct[LstAddToCart[index]], index: index,);
+            return ProductCard(item: LstProduct[LstAddToCart[index]], index: index,AddToCart: onAddToCart,);
           }),
     );
   }
+
+ onAddToCart(int index) {
+    if (!LstAddToCart.contains(index)) {
+      
+    }
+  }
 }
+

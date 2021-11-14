@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mini_hackathon/Pages/Profile/Profile.dart';
 import 'package:mini_hackathon/Pages/Search/Search.dart';
 
 class BootomNavigate extends StatefulWidget {
@@ -53,9 +54,15 @@ class _BootomNavigateState extends State<BootomNavigate> {
           label: 'search',
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.shopping_bag_rounded,
-            size: 20,
+          icon: IconButton(
+            onPressed: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()))
+            },
+            icon: Icon(
+              Icons.shopping_bag_rounded,
+              size: 20,
+            ),
           ),
           label: 'profile',
         ),

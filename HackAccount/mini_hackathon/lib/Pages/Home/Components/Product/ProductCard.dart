@@ -6,7 +6,8 @@ import 'package:mini_hackathon/model/Product.dart';
 class ProductCard extends StatefulWidget {
   Product item;
   int index;
-  ProductCard({Key? key, required this.item, required this.index})
+  Function(int index) AddToCart;
+  ProductCard({Key? key, required this.item, required this.index,required this.AddToCart})
       : super(key: key);
 
   @override
@@ -108,7 +109,7 @@ class _ProductCardState extends State<ProductCard> {
                     alignment: Alignment.centerRight,
                     child: IconButton(
                       onPressed: () {
-                        onAddToCart();
+                        widget.AddToCart(widget.index);
                       },
                       icon: Icon(
                         Icons.shopping_cart_outlined,
@@ -125,12 +126,5 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 
-  onAddToCart() {
-    int index = widget.index;
-    if (!LstAddToCart.contains(index)) {
-      setState(() {
-        LstAddToCart.add(index);
-      });
-    }
-  }
+  
 }
