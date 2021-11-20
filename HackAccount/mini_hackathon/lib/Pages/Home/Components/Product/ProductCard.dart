@@ -6,8 +6,15 @@ import 'package:mini_hackathon/model/Product.dart';
 class ProductCard extends StatefulWidget {
   Product item;
   int index;
-  Function(int index) AddToCart;
-  ProductCard({Key? key, required this.item, required this.index,required this.AddToCart})
+  int typeOfCard;
+  Function(int index) addToCart;
+
+  ProductCard(
+      {Key? key,
+      required this.item,
+      required this.index,
+      required this.typeOfCard,
+      required this.addToCart})
       : super(key: key);
 
   @override
@@ -15,6 +22,17 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  bool isFavourite = false;
+  int typeOfCard = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    isFavourite = widget.item.isFavourite;
+    typeOfCard = widget.typeOfCard;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var item = widget.item;
@@ -55,18 +73,20 @@ class _ProductCardState extends State<ProductCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: Colors.black,
-                              ),
-                            ),
+                            cardType(),
                             Container(
-                              color: Colors.deepOrange,
-                              width: 70,
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40)),
+                                color: Colors.deepOrange,
+                              ),
                               height: 20,
-                              child: Text("30% off"),
+                              child: Text("30% off",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
                             )
                           ],
                         ),
@@ -106,18 +126,7 @@ class _ProductCardState extends State<ProductCard> {
                       ],
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      onPressed: () {
-                        widget.AddToCart(widget.index);
-                      },
-                      icon: Icon(
-                        Icons.shopping_cart_outlined,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+                  cardTypeBottom(),
                 ],
               ),
             ),
@@ -127,5 +136,80 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 
-  
+  cardType() {
+    return typeOfCard == 0
+        ? IconButton(
+            onPressed: () {
+              favourite(widget.index);
+            },
+            icon: Icon(
+              isFavourite ? Icons.favorite : Icons.favorite_border,
+              color: isFavourite ? Colors.red : Colors.black,
+            ),
+          )
+        : typeOfCard == 2
+            ? IconButton(
+                onPressed: () {
+                  favourite(widget.index);
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.black,
+                ),
+              )
+            : Container();
+  }
+
+  cardTypeBottom() {
+    return typeOfCard == 0
+        ? Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+                padding: EdgeInsets.all(5),
+                color: Colors.blue[900],
+                child: Text(
+                  "Check Out",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  favourite(widget.index);
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.black,
+                ),
+              )
+          ],
+        )
+        : Container(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              onPressed: () {
+                widget.addToCart(widget.index);
+              },
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.black,
+              ),
+            ),
+          );
+    ;
+  }
+
+  favourite(int index) {
+    bool temp = LstProduct[index].isFavourite;
+    LstProduct[index].isFavourite = !temp;
+
+    setState(() {
+      if (!temp) {
+        AddToFavouite.add(index);
+      } else {
+        AddToFavouite.removeAt(index);
+      }
+    });
+  }
 }
