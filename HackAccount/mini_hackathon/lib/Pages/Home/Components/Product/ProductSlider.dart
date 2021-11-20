@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:mini_hackathon/Pages/Home/Components/Category/CategoryCard.dart';
 import 'package:mini_hackathon/Pages/Home/Components/Product/ProductCard.dart';
 import 'package:mini_hackathon/model/Product.dart';
 
@@ -19,11 +18,15 @@ class _ProductSliderState extends State<ProductSlider> {
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        padding: EdgeInsets.only(top: 20),
-        
+        padding: const EdgeInsets.only(top: 20),
         itemCount: LstProduct.length,
         itemBuilder: (context, index) {
-          return ProductCard(item: LstProduct[index], index: index, addToCart: widget.AddToCart, typeOfCard: 1,);
+          return ProductCard(item: LstProduct[index], index: index, addToCart: widget.AddToCart, typeOfCard: 2,);
         });
   }
 }
+
+
+// add to Cart > 0
+// Favourite > 1
+// normal > 2
