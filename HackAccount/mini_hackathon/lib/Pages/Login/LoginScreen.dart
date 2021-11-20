@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   onLoginClick() {
     if (userName.value.text.isNotEmpty) {
-      if (password.value.text == "12345") {
+      if (password.value.text == "123456") {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
       } else {
