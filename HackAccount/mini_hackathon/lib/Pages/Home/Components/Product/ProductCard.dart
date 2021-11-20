@@ -63,7 +63,8 @@ class _ProductCardState extends State<ProductCard> {
                               ),
                             ),
                             Container(
-                              width: 30,
+                              color: Colors.deepOrange,
+                              width: 70,
                               height: 20,
                               child: Text("30% off"),
                             )
