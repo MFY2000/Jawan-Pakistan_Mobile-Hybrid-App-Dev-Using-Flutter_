@@ -19,21 +19,21 @@ class CategoryCard extends StatelessWidget {
             Container(
               width: 100,
               height: 50,
-              child: const Image(
-                image: AssetImage("assets/images/bt1.png"),
+              child: Image(
+                image: AssetImage(item.productImage),
                 fit: BoxFit.contain,
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  "Shoes",
-                  style: TextStyle(fontSize: 24, color: Colors.black),
+                  item.name,
+                  style: const TextStyle(fontSize: 24, color: Colors.black),
                 ),
                 Text(
-                  "123df123s2", style: TextStyle(),
+                  "${item.count} items",
                 )
               ],
             )
