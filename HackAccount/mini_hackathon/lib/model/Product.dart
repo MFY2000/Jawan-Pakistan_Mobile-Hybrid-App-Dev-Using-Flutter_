@@ -41,19 +41,19 @@ class Product {
 List<Category> LstCategory = [
   Category(
     productId: 0,
-    productImage: 'images/p1.png',
+    productImage: 'assets/images/p1.png',
     name: 'Shoes',
     count: 4,
   ),
   Category(
     productId: 1,
-    productImage: 'images/xt3.png',
+    productImage: 'assets/images/xt3.png',
     name: 'T-Shirt',
     count: 4,
   ),
   Category(
     productId: 2,
-    productImage: 'images/j2.png',
+    productImage: 'assets/images/j2.png',
     name: 'Jeans',
     count: 4,
   ),
@@ -62,7 +62,7 @@ List<Category> LstCategory = [
 List<Product> LstProduct = [
   Product(
     productId: 0,
-    productImage: 'images/p1.png',
+    productImage: 'assets/images/p1.png',
     productName: 'Men`s\nFuelSell Echo',
     productCategory: 'FeMale`s',
     productRating: 5,
@@ -72,7 +72,7 @@ List<Product> LstProduct = [
   ),
   Product(
     productId: 1,
-    productImage: 'images/p2.png',
+    productImage: 'assets/images/p2.png',
     productName: 'Men`s FuelSell\nRebel',
     productCategory: 'Men`s',
     productRating: 5,
@@ -82,7 +82,7 @@ List<Product> LstProduct = [
   ),
   Product(
     productId: 2,
-    productImage: 'images/p3.png',
+    productImage: 'assets/images/p3.png',
     productName: 'Side blocks\n1200',
     productCategory: 'Men`s',
     productRating: 5,
