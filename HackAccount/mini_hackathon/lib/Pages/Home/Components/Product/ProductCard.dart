@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, deprecated_member_use, must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mini_hackathon/Pages/Home/HomeScreen.dart';
+import 'package:mini_hackathon/Pages/Product/ProductDetails.dart';
 import 'package:mini_hackathon/model/Product.dart';
 
 class ProductCard extends StatefulWidget {
@@ -24,6 +26,7 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   bool isFavourite = false;
   int typeOfCard = 0;
+  double width = 0.0, height = 0.0;
 
   @override
   void initState() {
@@ -33,22 +36,31 @@ class _ProductCardState extends State<ProductCard> {
     super.initState();
   }
 
+  displayProduct() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ProductDetails(item: widget.item)));
+  }
+
   @override
   Widget build(BuildContext context) {
-    var item = widget.item;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
 
-    return Container(
-      margin: EdgeInsets.only(bottom: 15),
-      alignment: Alignment.center,
-      child: Stack(
-        overflow: Overflow.visible,
-        children: [
-          Center(
-            child: Container(
-              width: 280,
-              alignment: Alignment.center,
+    return GestureDetector(
+      onTap: displayProduct,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 8),
+        alignment: Alignment.center,
+        child: Stack(
+          overflow: Overflow.visible,
+          children: [
+            Container(
+              width: width * .8,
+              height: height * .35,
               margin: EdgeInsets.only(top: 10),
-              height: 290,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -65,109 +77,95 @@ class _ProductCardState extends State<ProductCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            cardType(),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              margin: EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(40)),
-                                color: Colors.deepOrange,
-                              ),
-                              height: 20,
-                              child: Text("30% off",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Image.asset(
-                          item.productImage,
-                          width: 180,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              item.productName,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 13,
-                            ),
-                            Text(
-                              '\$ ${item.productPrice}',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                  cardType(),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 30),
+                    child: Image.asset(
+                      widget.item.productImage,
+                      width: width * .35,
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        widget.item.productName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        '\$ ${widget.item.productPrice}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      )
+                    ],
                   ),
                   cardTypeBottom(),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   cardType() {
-    return typeOfCard == 0
-        ? IconButton(
-            onPressed: () {
-              favourite(widget.index);
-            },
-            icon: Icon(
-              isFavourite ? Icons.favorite : Icons.favorite_border,
-              color: isFavourite ? Colors.red : Colors.black,
-            ),
-          )
-        : typeOfCard == 2
-            ? IconButton(
-                onPressed: () {
-                  favourite(widget.index);
-                },
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.black,
-                ),
-              )
-            : Container();
+    Widget labelTag = Container(
+      padding: EdgeInsets.all(5),
+      margin: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(40)),
+        color: Colors.deepOrange,
+      ),
+      child: Text("30% off",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+    );
+
+    List<Widget> toReturn = [];
+
+    if (typeOfCard == 1) {
+      toReturn.add(IconButton(
+        onPressed: () {
+          widget.addToCart(widget.index);
+        },
+        icon: Icon(
+          Icons.delete,
+          color: Colors.black,
+        ),
+      ));
+    } else if (typeOfCard == 2) {
+      toReturn.add(IconButton(
+        onPressed: () {
+          favourite(widget.index);
+        },
+        icon: Icon(
+          isFavourite ? Icons.favorite : Icons.favorite_border,
+          color: isFavourite ? Colors.red : Colors.black,
+        ),
+      ));
+    }
+
+    toReturn.add(labelTag);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: toReturn);
   }
 
   cardTypeBottom() {
     return typeOfCard == 0
         ? Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-                padding: EdgeInsets.all(5),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.only(left: 20),
                 color: Colors.blue[900],
                 child: Text(
                   "Check Out",
@@ -176,15 +174,15 @@ class _ProductCardState extends State<ProductCard> {
               ),
               IconButton(
                 onPressed: () {
-                  favourite(widget.index);
+                  widget.addToCart(widget.index);
                 },
                 icon: Icon(
                   Icons.delete,
                   color: Colors.black,
                 ),
               )
-          ],
-        )
+            ],
+          )
         : Container(
             alignment: Alignment.centerRight,
             child: IconButton(
@@ -201,15 +199,17 @@ class _ProductCardState extends State<ProductCard> {
   }
 
   favourite(int index) {
-    bool temp = LstProduct[index].isFavourite;
-    LstProduct[index].isFavourite = !temp;
+    bool temp = !LstProduct[index].isFavourite;
+    LstProduct[index].isFavourite = temp;
 
     setState(() {
-      if (!temp) {
+      if (temp) {
         AddToFavouite.add(index);
       } else {
         AddToFavouite.removeAt(index);
       }
+
+      isFavourite = temp;
     });
   }
 }
