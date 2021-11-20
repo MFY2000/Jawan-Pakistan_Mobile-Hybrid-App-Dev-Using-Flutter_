@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (userName.value.text.isNotEmpty) {
       if (password.value.text == "123456") {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            context, MaterialPageRoute(builder: (context) => const HomeScreen()));
       } else {
         showDialog(
           context: context,
