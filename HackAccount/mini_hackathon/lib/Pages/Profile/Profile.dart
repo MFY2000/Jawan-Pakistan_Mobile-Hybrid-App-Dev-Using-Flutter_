@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:mini_hackathon/Pages/Home/HomeScreen.dart';
 import 'package:mini_hackathon/Pages/Profile/Components/Display.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -11,11 +12,14 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(Icons.keyboard_arrow_left, color: Colors.deepOrange),
+        leading: IconButton(onPressed: ()=>{
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomeScreen()))
+            }, icon: const Icon(Icons.keyboard_arrow_left, size: 20,), color: Colors.deepOrange),
+        
       ),
       body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Card(
               child: Container(
@@ -33,6 +37,8 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
+
+
             Display(heading: "Email",subheading: "Fahad.yahya18@gmail.com",),
             Display(heading: "Email",subheading: "Fahad.yahya18@gmail.com",),
             Display(heading: "Email",subheading: "Fahad.yahya18@gmail.com",),
