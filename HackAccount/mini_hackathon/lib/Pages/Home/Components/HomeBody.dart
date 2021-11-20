@@ -16,12 +16,14 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          CategorySlider(),
-          ProductSlider(AddToCart: widget.function),
-        ],
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          children: [
+            CategorySlider(),
+            ProductSlider(AddToCart: widget.function),
+          ],
+        ),
       ),
     );
   }
