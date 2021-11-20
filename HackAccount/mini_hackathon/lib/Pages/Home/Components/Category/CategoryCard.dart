@@ -12,11 +12,12 @@ class CategoryCard extends StatelessWidget {
     return Card(
       elevation: 8,
       child: Container(
+        padding: const EdgeInsets.all(10),
         width: 250,
         height: 100,
         child: Row(
           children: [
-            Container(
+            SizedBox(
               width: 100,
               height: 50,
               child: Image(
