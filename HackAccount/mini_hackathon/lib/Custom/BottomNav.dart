@@ -36,7 +36,7 @@ class _BootomNavigateState extends State<BootomNavigate> {
         BottomNavigationBarItem(
           icon: Icon(
             Icons.home_filled,
-            size: 20,
+            size: 30,
           ),
           label: 'home',
         ),
@@ -48,7 +48,7 @@ class _BootomNavigateState extends State<BootomNavigate> {
             },
             icon: Icon(
               Icons.search,
-              size: 20,
+              size: 30,
             ),
           ),
           label: 'search',
@@ -61,7 +61,7 @@ class _BootomNavigateState extends State<BootomNavigate> {
             },
             icon: Icon(
               Icons.shopping_bag_rounded,
-              size: 20,
+              size: 30,
             ),
           ),
           label: 'profile',
