@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_hackathon/Custom/BottomNav.dart';
 import 'package:mini_hackathon/Pages/About/About.dart';
 import 'package:mini_hackathon/Pages/AddToCart/AddToCart.dart';
+import 'package:mini_hackathon/Pages/Favorite/Favorite.dart';
 import 'package:mini_hackathon/Pages/Home/Components/HomeBody.dart';
 import 'package:mini_hackathon/Pages/Login/LoginScreen.dart';
 import 'package:mini_hackathon/model/Product.dart';
@@ -30,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => AddToFavorite()));
+                    },
                   child: Icon(
                     Icons.favorite,
                     color: Colors.red,
@@ -41,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => AddToCart()));
                     },
                     child: Row(
@@ -67,9 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ))),
           ],
         ),
-        body: SingleChildScrollView(
-          child: HomeBody(function: onAddToCart),
-        ),
+        body: HomeBody(function: onAddToCart),
+        
         drawer: Drawer(
           child: ListView(
             // Important: Remove any padding from the ListView.
@@ -105,6 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ListTile(
                 leading: Icon(Icons.favorite),
                 title: Text("Favorite"),
+                onTap: () {
+                   Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => AddToFavorite()));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.info_rounded),
+                title: Text("About"),
                 onTap: () {
                    Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => AboutPage()));
