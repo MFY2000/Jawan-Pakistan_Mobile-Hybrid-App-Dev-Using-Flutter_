@@ -1,6 +1,10 @@
 // ignore_for_file: file_names
 
-import 'package:fb_login_app/Components/Custom/ButtonColored.dart';
+import 'package:fb_login_app/Components/Custom/Button/Button.dart';
+import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
+import 'package:fb_login_app/Config/size_config.dart';
+import 'package:fb_login_app/Pages/Login/SignIn/SignInSrceen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class IntroSrceen extends StatefulWidget {
@@ -13,6 +17,8 @@ class IntroSrceen extends StatefulWidget {
 class _IntroSrceenState extends State<IntroSrceen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -22,29 +28,52 @@ class _IntroSrceenState extends State<IntroSrceen> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text("Welcome to "),
-                    Text("Kolachi"),
+                  children: [
+                    const Text("Welcome to "),
+                    Text(
+                      "Kolachi",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
                   ],
                 ),
-                Text("Explore Us"),
+                Text(
+                  "Explore Us",
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
               ],
             ),
-            Container(
+            SizedBox(
               child: Image.asset("assets/images/firstTime.png"),
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.4,
+              width: getSize(true, 0.8),
+              height: getSize(false, 0.4),
             ),
-            Container(
-              child: Column(
-                children: [
-                  ButtonColored(),
-                ],
-              ),
+            Column(
+              children: [
+                ButtonColored(
+                    text: "Login",
+                    function: () {
+                      onClick(true);
+                    }),
+                SizedBox(
+                  height: getSize(false, .01),
+                ),
+                ButtonText(
+                    text: "Signup",
+                    function: () {
+                      onClick(false);
+                    })
+              ],
             ),
           ],
         ),
       ),
     );
+  }
+
+  void onClick(bool direction) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => const SignInSrceen()));
   }
 }

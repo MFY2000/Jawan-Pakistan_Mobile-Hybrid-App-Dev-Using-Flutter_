@@ -1,3 +1,6 @@
+
+import 'package:fb_login_app/Config/size_config.dart';
+import 'package:fb_login_app/Config/theme.dart';
 import 'package:fb_login_app/Pages/Splash/Splash.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'KOLACHI',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme(),
       home: const SplashScreen(),
     );
   }

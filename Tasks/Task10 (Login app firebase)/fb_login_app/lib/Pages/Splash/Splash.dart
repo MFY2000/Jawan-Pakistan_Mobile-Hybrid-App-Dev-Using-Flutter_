@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
 
   startTime() async {
-    var _duration = const Duration(seconds: 6);
+    var _duration = const Duration(seconds: 5);
     return Timer(_duration, navigationPage);
   }
 
@@ -72,8 +72,8 @@ class _SplashScreenState extends State<SplashScreen>
               children: <Widget>[
                 Image.asset(
                   'assets/images/logo/small_kolachi.png',
-                  width: animation.value * 250,
-                  height: animation.value * 250,
+                  width: animation.value * 350,
+                  height: animation.value * 350,
                 ),
               ],
             ),
