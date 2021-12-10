@@ -12,8 +12,16 @@ class SignInSrceen extends StatefulWidget {
 class _SignInSrceenState extends State<SignInSrceen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Text("data"),
+          TextField(),
+          TextField(),
+          
+        ],
+      ),
     );
   }
 }
