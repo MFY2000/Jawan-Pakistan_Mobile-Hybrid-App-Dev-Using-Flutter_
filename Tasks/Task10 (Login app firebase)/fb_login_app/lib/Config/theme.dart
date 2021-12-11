@@ -32,11 +32,16 @@ InputDecorationTheme inputDecorationTheme() {
 }
 
 TextTheme textTheme() {
-  return TextTheme(
+  return const TextTheme(
     button: TextStyle(
       color: kPrimaryLightColor,
     ),
     headline1: headingStyle,
+    headline2: TextStyle(
+      color: kHeading,
+      fontFamily: "Times New Roman",
+      fontSize: headingfontSize,
+    ),
     bodyText1: TextStyle(
       color: kTextColor,
     ),
@@ -58,7 +63,7 @@ AppBarTheme appBarTheme() {
 BoxShadow getShadow(Color colorTo) {
   return BoxShadow(
     color: colorTo.withOpacity(0.125),
-    spreadRadius: 2.5,
+    spreadRadius: 4,
     blurRadius: 25,
     offset: const Offset(0, 7), // changes position of shadow
   );

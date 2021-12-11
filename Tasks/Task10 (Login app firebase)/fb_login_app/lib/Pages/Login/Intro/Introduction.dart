@@ -4,6 +4,7 @@ import 'package:fb_login_app/Components/Custom/Button/Button.dart';
 import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
 import 'package:fb_login_app/Config/size_config.dart';
 import 'package:fb_login_app/Pages/Login/SignIn/SignInSrceen.dart';
+import 'package:fb_login_app/Pages/Login/SignUp/SignUpSrceen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -74,6 +75,6 @@ class _IntroSrceenState extends State<IntroSrceen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => const SignInSrceen()));
+            builder: (BuildContext context) => direction ? const SignInSrceen():const SignUpSrceen()));
   }
 }
