@@ -17,13 +17,18 @@ class _SocialMediaState extends State<SocialMedia> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Already have an account ? "),
-              TextButton(onPressed: () {}, child: Text("Signin"))
-            ]),
+        Padding(
+          padding: EdgeInsets.all(getSize(false, .001),),
+          child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Already have an account ? "),
+                GestureDetector(onTap: () {}, child: Text("Signin"))
+              ]),
+        ),
+        SizedBox(height: getSize(false, .1),),
+
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,7 +43,7 @@ class _SocialMediaState extends State<SocialMedia> {
                 width: getSize(true, .35),
                 alignment: Alignment.center,
                 child: Text(
-                  "text,",
+                  "Facebook",
                   style: TextStyle(color: kPrimaryLightColor),
                 ),
               ),
@@ -53,7 +58,7 @@ class _SocialMediaState extends State<SocialMedia> {
                 width: getSize(true, .35),
                 alignment: Alignment.center,
                 child: Text(
-                  "text,",
+                  "Google",
                   style: TextStyle(color: kPrimaryLightColor),
                 ),
               ),
