@@ -30,11 +30,19 @@ class _PasswordFeildState extends State<PasswordFeild> {
         padding: EdgeInsets.symmetric(
           vertical: getSize(false, .0125),
         ),
-        child: TextField(
+        child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            } else if (ref.isError) {
+              return ref.errorMessage;
+            }
+          },
           obscureText: _isObscure,
           onChanged: ref.onChange,
           decoration: InputDecoration(
             hintText: ref.label,
+            label: Text(ref.label),
             suffixIcon: IconButton(
                 icon:
                     Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
@@ -43,6 +51,8 @@ class _PasswordFeildState extends State<PasswordFeild> {
                     _isObscure = !_isObscure;
                   });
                 }),
+                
+            contentPadding: EdgeInsets.only(left: 0),
             enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Color(0XFFE0E0E0), width: 2.3),
             ),
