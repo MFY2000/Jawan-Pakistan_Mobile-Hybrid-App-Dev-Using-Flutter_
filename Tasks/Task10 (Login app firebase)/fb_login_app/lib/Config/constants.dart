@@ -5,12 +5,13 @@ const kPrimaryColor = Color(0xFFFF8000);
 const kPrimaryLightColor = Color(0xFFFFFFFF);
 const kSecondaryColor = Color(0XFF8B8B8B);
 const kTextColor = Color(0xFF757575);
-const kHeading = Color(0xFF434343);
+const kHeading = Colors.black;
 
 const kPrimaryGradientColor = LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  colors: [Color(0xFFFF9A00), Color(0xFFFFDB94)],
+  begin: Alignment.center,
+  end: Alignment.center,
+  colors: [Color(0xFFFFBB33),
+   Color(0xFFFFBB53)],
 );
 
 
