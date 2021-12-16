@@ -3,10 +3,13 @@
 import 'package:fb_login_app/Config/constants.dart';
 import 'package:fb_login_app/Config/size_config.dart';
 import 'package:fb_login_app/Config/theme.dart';
+import 'package:fb_login_app/Pages/Login/SignIn/SignInSrceen.dart';
+import 'package:fb_login_app/Pages/Login/SignUp/SignUpSrceen.dart';
 import 'package:flutter/material.dart';
 
 class SocialMedia extends StatefulWidget {
-  const SocialMedia({Key? key}) : super(key: key);
+  final bool isSignIN;
+  const SocialMedia({Key? key, required this.isSignIN}) : super(key: key);
 
   @override
   _SocialMediaState createState() => _SocialMediaState();
@@ -15,57 +18,80 @@ class SocialMedia extends StatefulWidget {
 class _SocialMediaState extends State<SocialMedia> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(getSize(false, .001),),
-          child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Already have an account ? "),
-                GestureDetector(onTap: () {}, child: Text("Signin"))
-              ]),
-        ),
-        SizedBox(height: getSize(false, .1),),
-
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: kPrimaryGradientColor,
-                    boxShadow: [getShadow(kPrimaryColor)]),
-                height: getSize(false, 0.0525),
-                width: getSize(true, .35),
-                alignment: Alignment.center,
-                child: Text(
-                  "Facebook",
-                  style: TextStyle(color: kPrimaryLightColor),
-                ),
-              ),
+    return Padding(
+      padding: EdgeInsets.only(
+        top: getSize(false, .03),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(
+              getSize(false, .001),
             ),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: kPrimaryGradientColor,
-                    boxShadow: [getShadow(kPrimaryColor)]),
-                height: getSize(false, 0.0525),
-                width: getSize(true, .35),
-                alignment: Alignment.center,
-                child: Text(
-                  "Google",
-                  style: TextStyle(color: kPrimaryLightColor),
-                ),
-              ),
-            )
-          ],
-        )
-      ],
+            child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.isSignIN
+                        ? "Already have an account ? "
+                        : "Don't have an account ? ",
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        goToOtherRouter(
+                            widget.isSignIN ? const SignInSrceen() : const SignUpSrceen());
+                      },
+                      child: Text(widget.isSignIN ? "Signup" : "Signin"))
+                ]),
+          ),
+          SizedBox(
+            height: getSize(false, .07),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [getButton(true), getButton(false)],
+          )
+        ],
+      ),
     );
+  }
+
+  getButton(bool isFacebook) {
+    Widget toReturn;
+    var primaryColor =
+        isFacebook ? const Color(0xFF002EFF) : const Color(0xFFff0000);
+
+    LinearGradient primaryGradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: isFacebook
+          ? const [Color(0xFF002EFF), Color(0xFF0087FF)]
+          : const [Color(0xFFff0000), Color(0xFFff0000)],
+    );
+
+    toReturn = GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: primaryGradient, boxShadow: [getShadow(primaryColor)]),
+        height: getSize(false, 0.0525),
+        width: getSize(true, .35),
+        alignment: Alignment.center,
+        child: Text(
+          isFacebook ? "Facebook" : "Google",
+          style: const TextStyle(color: kPrimaryLightColor),
+        ),
+      ),
+    );
+
+    return toReturn;
+  }
+
+  goToOtherRouter(Widget route) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (BuildContext context) => route));
   }
 }
