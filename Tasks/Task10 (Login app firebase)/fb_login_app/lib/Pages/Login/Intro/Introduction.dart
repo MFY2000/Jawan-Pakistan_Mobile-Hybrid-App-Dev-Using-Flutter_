@@ -50,11 +50,14 @@ class _IntroSrceenState extends State<IntroSrceen> {
             ),
             Column(
               children: [
-                ButtonColored(
-                    text: "Login",
-                    function: () {
-                      onClick(true);
-                    }),
+                SizedBox(
+                  width: getSize(true, .7),
+                  child: ButtonColored(
+                      text: "Login",
+                      function: () {
+                        onClick(true);
+                      }),
+                ),
                 SizedBox(
                   height: getSize(false, .01),
                 ),
@@ -75,6 +78,7 @@ class _IntroSrceenState extends State<IntroSrceen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => direction ? const SignInSrceen():const SignUpSrceen()));
+            builder: (BuildContext context) =>
+                direction ? const SignInSrceen() : const SignUpSrceen()));
   }
 }
