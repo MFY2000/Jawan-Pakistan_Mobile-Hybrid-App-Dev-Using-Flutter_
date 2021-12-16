@@ -19,12 +19,11 @@ class ButtonColored extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: kPrimaryGradientColor,
             boxShadow: [getShadow(kPrimaryColor)]),
-        height: getSize(false, 0.0525),
-        width: getSize(true, .7),
+        height: getSize(false, 0.06),
         alignment: Alignment.center,
         child: Text(
           text,
-          style: TextStyle(color: kPrimaryLightColor),
+          style: const TextStyle(color: kPrimaryLightColor),
         ),
       ),
     );
