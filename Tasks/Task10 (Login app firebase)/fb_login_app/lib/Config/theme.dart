@@ -1,3 +1,4 @@
+import 'package:fb_login_app/Config/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -32,18 +33,22 @@ InputDecorationTheme inputDecorationTheme() {
 }
 
 TextTheme textTheme() {
-  return const TextTheme(
+  return TextTheme(
     button: TextStyle(
       color: kPrimaryLightColor,
+
     ),
     headline1: headingStyle,
     headline2: TextStyle(
       color: kHeading,
       fontFamily: "Times New Roman",
       fontSize: headingfontSize,
+      height: getSize(false, .001),
     ),
     bodyText1: TextStyle(
       color: kTextColor,
+      fontSize: fontSize - 2,
+
     ),
     bodyText2: TextStyle(color: kTextColor, fontSize: fontSize),
   );
@@ -62,9 +67,9 @@ AppBarTheme appBarTheme() {
 
 BoxShadow getShadow(Color colorTo) {
   return BoxShadow(
-    color: colorTo.withOpacity(0.125),
-    spreadRadius: 4,
-    blurRadius: 25,
-    offset: const Offset(0, 7), // changes position of shadow
+    color: colorTo.withOpacity(.5),
+    spreadRadius: 1,
+    blurRadius: 20,
+    offset: const Offset(0, 14), // changes position of shadow
   );
 }
