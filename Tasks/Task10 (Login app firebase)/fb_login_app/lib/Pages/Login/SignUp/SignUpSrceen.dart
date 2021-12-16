@@ -56,7 +56,7 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
                 padding: EdgeInsets.symmetric(vertical: getSize(false, .0125)),
                 child: ButtonColored(function: onSigupClick, text: "Register"),
               ),
-              SocialMedia(),
+              const SocialMedia(isSignIN: true,),
             ],
           ),
         ),
@@ -92,4 +92,5 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
       print(e);
     }
   }
+  
 }
