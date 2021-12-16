@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SingleChildScrollView(
       child: Scaffold(
         appBar: AppBar(),
+        body: Container(child: Text("Hello"),),
       ),
     );
   }
