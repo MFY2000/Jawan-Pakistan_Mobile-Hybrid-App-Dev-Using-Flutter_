@@ -30,6 +30,6 @@ double getProportionateScreenWidth(double inputWidth) {
 }
 
 double getSize(bool isSize, double inputWidth,){
-  double size = isSize ? SizeConfig.screenWidth : SizeConfig.screenHeight;
+  double size = isSize ? SizeConfig._mediaQueryData.size.width : SizeConfig._mediaQueryData.size.height;
   return size * inputWidth;
 }
