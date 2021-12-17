@@ -30,17 +30,16 @@ class _PasswordFeildState extends State<PasswordFeild> {
         padding: EdgeInsets.symmetric(
           vertical: getSize(false, .0125),
         ),
-        child: TextFormField(
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter some text';
-            } else if (ref.isError) {
-              return ref.errorMessage;
-            }
-          },
+        child: TextField(
           obscureText: _isObscure,
-          onChanged: ref.onChange,
+          onChanged: (String value) {
+            setState(() {
+              ref.isError = value.isEmpty;
+            });
+            ref.onChange(value);
+          },
           decoration: InputDecoration(
+            errorText: widget.reference.isError ? ref.errorMessage : null,
             hintText: ref.label,
             label: Text(ref.label),
             suffixIcon: IconButton(
@@ -51,7 +50,6 @@ class _PasswordFeildState extends State<PasswordFeild> {
                     _isObscure = !_isObscure;
                   });
                 }),
-                
             contentPadding: EdgeInsets.only(left: 0),
             enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Color(0XFFE0E0E0), width: 2.3),
@@ -59,6 +57,9 @@ class _PasswordFeildState extends State<PasswordFeild> {
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Color(0xffbdbdbd), width: 2.3),
             ),
+            errorBorder: const UnderlineInputBorder(borderSide: BorderSide()),
+            focusedErrorBorder:
+                const UnderlineInputBorder(borderSide: BorderSide()),
           ),
           textInputAction: TextInputAction.next,
         ));
