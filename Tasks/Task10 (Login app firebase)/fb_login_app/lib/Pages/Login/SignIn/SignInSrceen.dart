@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:fb_login_app/Components/Custom/Alert/AlertBox1.dart';
 import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/PasswordFeild.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/TextFeild_1.dart';
@@ -55,7 +56,9 @@ class _SignInSrceenState extends State<SignInSrceen> {
                   margin: EdgeInsets.only(top: getSize(false, .0125)),
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
-                      onTap: () {goToOtherRouter(const ForgetPassword());},
+                      onTap: () {
+                        goToOtherRouter(const ForgetPassword());
+                      },
                       child: Text(
                         "Forget Password ?",
                         style: Theme.of(context).textTheme.bodyText1,
@@ -75,6 +78,7 @@ class _SignInSrceenState extends State<SignInSrceen> {
       ),
     );
   }
+
   goToOtherRouter(Widget route) {
     Navigator.push(
         context, MaterialPageRoute(builder: (BuildContext context) => route));
@@ -83,7 +87,7 @@ class _SignInSrceenState extends State<SignInSrceen> {
   onSigupClick() {
     bool isError = false;
 
-    if (!controller[0].isFill) {
+    if (!(controller[0].isFill)) {
       setState(() {
         controller[0].isError = true;
         controller[0].errorMessage = "User Id is empty";
@@ -91,7 +95,7 @@ class _SignInSrceenState extends State<SignInSrceen> {
       });
     }
 
-    if (!controller[1].isFill) {
+    if (!(controller[0].isFill)) {
       setState(() {
         controller[1].isError = true;
         controller[1].errorMessage = "Passwords is empty";
@@ -100,12 +104,11 @@ class _SignInSrceenState extends State<SignInSrceen> {
     }
 
     if (!isError) {
-      print("hello");
-      // onSigup();
-      // Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (BuildContext context) => const HomeScreen()));
+      onSigup();
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const HomeScreen()));
     }
   }
 
@@ -113,13 +116,14 @@ class _SignInSrceenState extends State<SignInSrceen> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-              email: "barry.allen@example.com",
-              password: "SuperSecretPassword!");
+              email: controller[0].value, password: controller[1].value);
     } on FirebaseAuthException catch (e) {
+      print(e);
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        alertBox1(context, "user Not Found", 'No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        alertBox1(context, "Wrong Password",
+            'Wrong password provided for that user.');
       }
     }
   }
