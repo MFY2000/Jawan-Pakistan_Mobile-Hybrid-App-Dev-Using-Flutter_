@@ -43,7 +43,7 @@ TextTheme textTheme() {
       color: kHeading,
       fontFamily: "Times New Roman",
       fontSize: headingfontSize,
-      height: getSize(false, .001),
+      height: 1,
     ),
     bodyText1: TextStyle(
       color: kTextColor,
