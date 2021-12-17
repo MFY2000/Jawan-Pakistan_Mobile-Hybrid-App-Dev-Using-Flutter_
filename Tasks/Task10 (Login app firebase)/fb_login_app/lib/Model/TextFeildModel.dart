@@ -16,6 +16,6 @@ class TextFeildModel {
 
   onChange(String valueEnter){
     value =  valueEnter;
-    isFill = value.isEmpty;
+    isFill = value.isNotEmpty;
   }
 }
