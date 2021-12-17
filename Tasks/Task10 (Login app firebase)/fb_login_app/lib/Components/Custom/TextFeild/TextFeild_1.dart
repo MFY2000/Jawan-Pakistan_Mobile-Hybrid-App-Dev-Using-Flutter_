@@ -30,10 +30,13 @@ class _TextFeild1State extends State<TextFeild1> {
           vertical: getSize(false, .0125),
         ),
         child: TextField(
-          onChanged: ref.onChange,
+          onChanged: (String value) {
+            setState(() { ref.isError = value.isEmpty; });
+            ref.onChange(value);
+          },
           controller: ref.control,
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 0),
             label: Text(ref.label),
             hintText: ref.label,
             alignLabelWithHint: true,
@@ -42,6 +45,8 @@ class _TextFeild1State extends State<TextFeild1> {
                 borderSide: BorderSide(color: Color(0XFFE0E0E0), width: 2.3)),
             focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Color(0xffbdbdbd), width: 2.3)),
+            errorBorder: const UnderlineInputBorder(borderSide: BorderSide()),
+            focusedErrorBorder: const UnderlineInputBorder(borderSide: BorderSide()),
           ),
           textInputAction: TextInputAction.next,
         ));
