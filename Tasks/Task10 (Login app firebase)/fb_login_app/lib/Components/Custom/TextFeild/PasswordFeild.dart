@@ -57,9 +57,10 @@ class _PasswordFeildState extends State<PasswordFeild> {
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Color(0xffbdbdbd), width: 2.3),
             ),
-            errorBorder: const UnderlineInputBorder(borderSide: BorderSide()),
-            focusedErrorBorder:
-                const UnderlineInputBorder(borderSide: BorderSide()),
+            errorBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red)),
+            focusedErrorBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red)),
           ),
           textInputAction: TextInputAction.next,
         ));
