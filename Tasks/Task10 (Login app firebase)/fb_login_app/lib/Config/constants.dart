@@ -10,24 +10,20 @@ const kHeading = Colors.black;
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.center,
   end: Alignment.center,
-  colors: [Color(0xFFFFBB33),
-   Color(0xFFFFBB53)],
+  colors: [Color(0xFFFFBB33), Color(0xFFFFBB53)],
 );
-
 
 const kAnimationDuration = Duration(milliseconds: 200);
 const defaultDuration = Duration(milliseconds: 250);
 
-const double fontSize =  16;
-const double headingfontSize =  23;
+const double fontSize = 16;
+const double headingfontSize = 23;
 
 const TextStyle headingStyle = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.bold,
   color: kTextColor,
 );
-
-
 
 // Form Error
 final RegExp emailValidatorRegExp =
