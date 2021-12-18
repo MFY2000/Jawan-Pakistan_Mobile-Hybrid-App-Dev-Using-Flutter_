@@ -4,6 +4,7 @@ import 'package:fb_login_app/Components/Custom/Alert/AlertBox1.dart';
 import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/PasswordFeild.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/TextFeild_1.dart';
+import 'package:fb_login_app/Config/Validition.dart';
 import 'package:fb_login_app/Config/constants.dart';
 import 'package:fb_login_app/Config/size_config.dart';
 import 'package:fb_login_app/Model/TextFeildModel.dart';
@@ -87,30 +88,23 @@ class _SignInSrceenState extends State<SignInSrceen> {
 
   onSigupClick() async {
     bool isError = false;
+    var isEmail = validtionConstantEmail(controller[0].value);
+    var isPassword = validtionConstantPassword(controller[1].value);
 
-    if (!(controller[0].isFill)) {
+
+    if (isEmail[0]) {
       setState(() {
-        controller[0].isError = true;
-        controller[0].errorMessage = kEmailNullError;
-        isError = true;
-      });
-    } else if ((controller[0].value.contains(emailValidatorRegExp))) {
-      setState(() {
-        controller[0].isError = true;
-        controller[0].errorMessage = kInvalidEmailError;
+        controller[0].isError = isEmail[0];
+        controller[0].errorMessage = isEmail[1];
+        isError =  isEmail[0];
       });
     }
 
-    if (!(controller[1].isFill)) {
+    if(isPassword[0]){
       setState(() {
-        controller[1].isError = true;
-        controller[1].errorMessage = kPassNullError;
-        isError = true;
-      });
-    } else if (controller[1].value.length > 6) {
-      setState(() {
-        controller[1].isError = true;
-        controller[1].errorMessage = kShortPassError;
+        controller[1].isError = isPassword[0];
+        controller[1].errorMessage = isPassword[1];
+        isError =  isPassword[0];
       });
     }
 
