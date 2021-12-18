@@ -13,11 +13,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Scaffold(
+    return  Scaffold(
         appBar: AppBar(),
         body: Container(child: Text("Hello"),),
-      ),
+      
     );
   }
 }
