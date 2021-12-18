@@ -3,6 +3,7 @@
 import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/PasswordFeild.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/TextFeild_1.dart';
+import 'package:fb_login_app/Config/constants.dart';
 import 'package:fb_login_app/Config/size_config.dart';
 import 'package:fb_login_app/Model/TextFeildModel.dart';
 import 'package:fb_login_app/Pages/Home/HomeScreen.dart';
@@ -65,23 +66,65 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
   }
 
   onSigupClick() {
-    if (controller[0].isFill) {
-    } else if (controller[1].isFill) {
-    } else if (controller[2].isFill) {
-    } else {
-      onSigup();
+    bool isError = false;
+    
+    if (!(controller[0].isFill)) {
+      setState(() {
+        controller[0].isError = true;
+        controller[0].errorMessage = kNamelNullError;
+        isError = true;
+      });
+    } else if (controller[0].value.length > 2) {
+      setState(() {
+        controller[0].isError = true;
+        controller[0].errorMessage = kShortNameError;
+        isError = true;
+      });
+    }
+
+    if (!(controller[1].isFill)) {
+      setState(() {
+        controller[1].isError = true;
+        controller[1].errorMessage = kEmailNullError;
+        isError = true;
+      });
+    } else if (!(controller[1].value.contains(emailValidatorRegExp))) {
+      setState(() {
+        controller[1].isError = true;
+        controller[1].errorMessage = kInvalidEmailError;
+        isError = true;
+      });
+    }
+
+    if (!(controller[2].isFill)) {
+      setState(() {
+        controller[2].isError = true;
+        controller[2].errorMessage = kPassNullError;
+        isError = true;
+      });
+    }else if (controller[2].value.length < 6) {
+      setState(() {
+        controller[2].isError = true;
+        controller[2].errorMessage = kShortPassError;
+        isError = true;
+      });
+    }
+
+    if (!isError) {
+      onSigUp();
+    }
+  }
+  onSigUp() async {
+    try {
+
+      print("${controller[1].value}, password: ${controller[2].value}");
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: controller[1].value, password: controller[2].value);
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => const HomeScreen()));
-    }
-  }
-
-  onSigup() async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: controller[1].value, password: controller[2].value);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
