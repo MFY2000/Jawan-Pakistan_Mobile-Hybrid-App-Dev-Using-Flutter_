@@ -94,7 +94,7 @@ class _SignInSrceenState extends State<SignInSrceen> {
         controller[0].errorMessage = kEmailNullError;
         isError = true;
       });
-    } else if (controller[0].value.contains(emailValidatorRegExp)) {
+    } else if ((controller[0].value.contains(emailValidatorRegExp))) {
       setState(() {
         controller[0].isError = true;
         controller[0].errorMessage = kInvalidEmailError;
@@ -107,21 +107,14 @@ class _SignInSrceenState extends State<SignInSrceen> {
         controller[1].errorMessage = kPassNullError;
         isError = true;
       });
-    }else if (controller[1].value.length > 6) {
+    } else if (controller[1].value.length > 6) {
       setState(() {
         controller[1].isError = true;
         controller[1].errorMessage = kShortPassError;
       });
     }
 
-    if (!isError) {
-      onSigIn();
-      
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
-    }
+    if (!isError) onSigIn();
   }
 
   onSigIn() async {
@@ -129,16 +122,18 @@ class _SignInSrceenState extends State<SignInSrceen> {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: controller[0].value, password: controller[1].value);
+
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const HomeScreen()));
     } on FirebaseAuthException catch (e) {
-
       if (e.code == 'user-not-found') {
-        // alertBox1(context, "user Not Found", 'No user found for that email.');
+        alertBox1(context, "user Not Found", 'No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        // alertBox1(context, "Wrong Password",
-            // 'Wrong password provided for that user.');
+        alertBox1(context, "Wrong Password",
+        'Wrong password provided for that user.');
       }
-
-      
     }
   }
 }
