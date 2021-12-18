@@ -31,7 +31,9 @@ class _TextFeild1State extends State<TextFeild1> {
         ),
         child: TextField(
           onChanged: (String value) {
-            setState(() { ref.isError = value.isEmpty; });
+            setState(() {
+              ref.isError = value.isEmpty;
+            });
             ref.onChange(value);
           },
           controller: ref.control,
@@ -42,11 +44,13 @@ class _TextFeild1State extends State<TextFeild1> {
             alignLabelWithHint: true,
             errorText: widget.reference.isError ? ref.errorMessage : null,
             enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0XFFE0E0E0), width: 2.3)),
+                borderSide: BorderSide(color: Color(0XFFE0E0E0))),
             focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xffbdbdbd), width: 2.3)),
-            errorBorder: const UnderlineInputBorder(borderSide: BorderSide()),
-            focusedErrorBorder: const UnderlineInputBorder(borderSide: BorderSide()),
+                borderSide: BorderSide(color: Color(0xffbdbdbd))),
+            errorBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red)),
+            focusedErrorBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red)),
           ),
           textInputAction: TextInputAction.next,
         ));
