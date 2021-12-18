@@ -4,6 +4,7 @@ import 'package:fb_login_app/Components/Custom/Alert/AlertBox1.dart';
 import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/PasswordFeild.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/TextFeild_1.dart';
+import 'package:fb_login_app/Config/constants.dart';
 import 'package:fb_login_app/Config/size_config.dart';
 import 'package:fb_login_app/Model/TextFeildModel.dart';
 import 'package:fb_login_app/Pages/Home/HomeScreen.dart';
@@ -84,27 +85,38 @@ class _SignInSrceenState extends State<SignInSrceen> {
         context, MaterialPageRoute(builder: (BuildContext context) => route));
   }
 
-  onSigupClick() {
+  onSigupClick() async {
     bool isError = false;
 
     if (!(controller[0].isFill)) {
       setState(() {
         controller[0].isError = true;
-        controller[0].errorMessage = "User Id is empty";
+        controller[0].errorMessage = kEmailNullError;
         isError = true;
+      });
+    } else if (controller[0].value.contains(emailValidatorRegExp)) {
+      setState(() {
+        controller[0].isError = true;
+        controller[0].errorMessage = kInvalidEmailError;
       });
     }
 
-    if (!(controller[0].isFill)) {
+    if (!(controller[1].isFill)) {
       setState(() {
         controller[1].isError = true;
-        controller[1].errorMessage = "Passwords is empty";
+        controller[1].errorMessage = kPassNullError;
         isError = true;
+      });
+    }else if (controller[1].value.length > 6) {
+      setState(() {
+        controller[1].isError = true;
+        controller[1].errorMessage = kShortPassError;
       });
     }
 
     if (!isError) {
-      onSigup();
+      onSigIn();
+      
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -112,19 +124,21 @@ class _SignInSrceenState extends State<SignInSrceen> {
     }
   }
 
-  onSigup() async {
+  onSigIn() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: controller[0].value, password: controller[1].value);
     } on FirebaseAuthException catch (e) {
-      print(e);
+
       if (e.code == 'user-not-found') {
-        alertBox1(context, "user Not Found", 'No user found for that email.');
+        // alertBox1(context, "user Not Found", 'No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        alertBox1(context, "Wrong Password",
-            'Wrong password provided for that user.');
+        // alertBox1(context, "Wrong Password",
+            // 'Wrong password provided for that user.');
       }
+
+      
     }
   }
 }
