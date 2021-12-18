@@ -33,7 +33,7 @@ InputDecorationTheme inputDecorationTheme() {
 }
 
 TextTheme textTheme() {
-  return TextTheme(
+  return const TextTheme(
     button: TextStyle(
       color: kPrimaryLightColor,
 
