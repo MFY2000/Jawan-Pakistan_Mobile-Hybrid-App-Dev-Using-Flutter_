@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:fb_login_app/Components/Custom/Alert/AlertBox1.dart';
 import 'package:fb_login_app/Components/Custom/Button/ButtonColored.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/PasswordFeild.dart';
 import 'package:fb_login_app/Components/Custom/TextFeild/TextFeild_1.dart';
@@ -57,7 +58,9 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
                 padding: EdgeInsets.symmetric(vertical: getSize(false, .0125)),
                 child: ButtonColored(function: onSigupClick, text: "Register"),
               ),
-              const SocialMedia(isSignIN: true,),
+              const SocialMedia(
+                isSignIN: true,
+              ),
             ],
           ),
         ),
@@ -67,14 +70,14 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
 
   onSigupClick() {
     bool isError = false;
-    
+
     if (!(controller[0].isFill)) {
       setState(() {
         controller[0].isError = true;
         controller[0].errorMessage = kNamelNullError;
         isError = true;
       });
-    } else if (controller[0].value.length > 2) {
+    } else if (controller[0].value.length < 2) {
       setState(() {
         controller[0].isError = true;
         controller[0].errorMessage = kShortNameError;
@@ -102,7 +105,7 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
         controller[2].errorMessage = kPassNullError;
         isError = true;
       });
-    }else if (controller[2].value.length < 6) {
+    } else if (controller[2].value.length < 6) {
       setState(() {
         controller[2].isError = true;
         controller[2].errorMessage = kShortPassError;
@@ -114,26 +117,28 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
       onSigUp();
     }
   }
+
   onSigUp() async {
     try {
-
-      print("${controller[1].value}, password: ${controller[2].value}");
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: controller[1].value, password: controller[2].value);
+      
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => const HomeScreen()));
+    
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        alertBox1(
+            context, "weak-password", "The password provided is too weak.");
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        alertBox1(
+            context, "email-already-in-use", "The account already exists for that email.");
       }
     } catch (e) {
       print(e);
     }
   }
-  
 }
