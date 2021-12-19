@@ -27,9 +27,10 @@ class AuthClass {
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
         storeTokenAndData(userCredential);
+        
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (builder) =>const HomeScreen()),
+            MaterialPageRoute(builder: (builder) => HomeScreen(user: userCredential.user!)),
             (route) => false);
 
         final snackBar =
