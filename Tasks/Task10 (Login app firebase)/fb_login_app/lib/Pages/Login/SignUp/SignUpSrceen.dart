@@ -115,7 +115,7 @@ class _SignUpSrceenState extends State<SignUpSrceen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
+              builder: (BuildContext context) =>HomeScreen(user: userCredential.user!)));
     
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
