@@ -120,7 +120,7 @@ class _SignInSrceenState extends State<SignInSrceen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
+              builder: (BuildContext context) => HomeScreen(user: userCredential.user!)));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         alertBox1(context, "user Not Found", 'No user found for that email.');
