@@ -3,6 +3,7 @@
 import 'package:fb_login_app/Config/constants.dart';
 import 'package:fb_login_app/Config/size_config.dart';
 import 'package:fb_login_app/Config/theme.dart';
+import 'package:fb_login_app/Model/Services/Auth.dart';
 import 'package:fb_login_app/Pages/Login/SignIn/SignInSrceen.dart';
 import 'package:fb_login_app/Pages/Login/SignUp/SignUpSrceen.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,9 @@ class SocialMedia extends StatefulWidget {
 }
 
 class _SocialMediaState extends State<SocialMedia> {
+  AuthClass auth = AuthClass();
+
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -73,7 +77,7 @@ class _SocialMediaState extends State<SocialMedia> {
     );
 
     toReturn = GestureDetector(
-      onTap: () {},
+      onTap: () {isFacebook? (){} : auth.googleSignIn(context);},
       child: Container(
         decoration: BoxDecoration(
             gradient: primaryGradient, boxShadow: [getShadow(primaryColor)]),
