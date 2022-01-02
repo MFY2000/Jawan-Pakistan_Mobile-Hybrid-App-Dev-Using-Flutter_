@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController controller = new TextEditingController();
-  TextEditingController updateController = new TextEditingController();
   late User currentUser;
   @override
   void initState() {
@@ -33,103 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
           '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}-${DateTime.now()}'
     });
     controller.clear();
-  }
-
-  Future<void> deleteTask(String id) {
-    CollectionReference taskRefrence = FirebaseFirestore.instance
-        .collection('task')
-        .doc(currentUser.email)
-        .collection('${currentUser.email}Task');
-    return taskRefrence.doc(id).delete();
-  }
-
-  Future<void> updateUser(String id) {
-    CollectionReference taskRefrence = FirebaseFirestore.instance
-        .collection('task')
-        .doc(currentUser.email)
-        .collection('${currentUser.email}Task');
-    return taskRefrence
-        .doc(id)
-        .update({
-          'task': updateController.value.text,
-          'date':
-              '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}-${DateTime.now()}'
-        })
-        .then((value) => print("User Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
-  }
-
-  Future<void> _showMyDialog(String value, bool state) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(state ? 'Error Message' : 'Success Messages'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(value),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('ok'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  //signout
-  void SingnOut() async {
-    _showMyDialog("Do tou want to Logout?", false)
-        .whenComplete(() => FirebaseAuth.instance.signOut());
-  }
-
-  Future<void> UpdateTask(String id) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Update Task'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Container(
-                  child: Container(
-                    child: TextField(
-                      controller: updateController,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 20),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      updateUser(id);
-                      Navigator.of(context).pop();
-                      _showMyDialog("Update Text", false);
-                      controller.clear();
-                    },
-                    child: Text(
-                      "Update Data",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
   }
 
   @override
