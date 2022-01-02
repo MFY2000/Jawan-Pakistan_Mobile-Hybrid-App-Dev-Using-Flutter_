@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:weather_api/ApiServices.dart';
 
 class HomePage extends StatefulWidget {
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
 
   imageSelection(String weather) {
     if (weather == "50n" || weather == "50d") {
-      return Icons.cloud;
+      return FontAwesomeIcons.smog;
     } else if (weather == "01d") {
       return Icons.wb_sunny;
     } else if (weather == "01n") {
