@@ -22,12 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> addData() async {
-    await FirebaseFirestore.instance
-        .collection('task')
-        .doc(currentUser.email)
-        .collection('${currentUser.email}Task')
-        .add({
-      'task': controller.value.text,
+    await FirebaseFirestore.instance.collection('ChatRoom').add({
+      'uid': currentUser.uid,
+      'profilePic': currentUser.photoURL ??
+          "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+      'message': controller.value.text,
+      'userName': currentUser.displayName,
       'date':
           '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}-${DateTime.now()}'
     });
@@ -43,12 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
         .snapshots();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Todo With firebase (Auth, Cloud)"),
+        title: Text("${currentUser.displayName}"),
         actions: [
           IconButton(
-            onPressed: () {
-              SingnOut();
-            },
+            onPressed: () {},
             icon: Icon(Icons.logout_outlined),
             color: Colors.white,
           )
@@ -57,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              child: Text('Email : ${currentUser.email}',
-                  style: TextStyle(color: Colors.blueAccent, fontSize: 16)),
+            Container(
+              height: (MediaQuery.of(context).size.height) * .85,
+              color: Colors.amber,
             ),
             Container(
               child: Container(
@@ -74,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   addData();
-                  _showMyDialog("Added Text", false);
                 },
                 child: Text(
                   "Insert Data",
@@ -104,8 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Map<String, dynamic> data =
                         document.data()! as Map<String, dynamic>;
                     data["id"] = document.id;
-                    return CardItem(
-                        data, deleteTask, UpdateTask, updateController);
+                    return CardItem(data);
                   }).toList(),
                 );
               },
@@ -117,45 +113,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget CardItem(Map data, Function delete, Function update,
-        TextEditingController controller) =>
-    Card(
+Widget CardItem(Map data) => Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("${data["task"]}", style: TextStyle(fontSize: 20)),
-            Row(
-              children: [
-                Container(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      controller.text = data["task"];
-                      update("${data["id"]}");
-                    },
-                    child: Text(
-                      "Edit",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      delete("${data["id"]}");
-                    },
-                    child: Text(
-                      "Delete",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),
