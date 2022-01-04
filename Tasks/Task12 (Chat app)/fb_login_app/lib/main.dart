@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'KOLACHI',
       theme: theme(),
       home: const SplashScreen(),
+      
     );
   }
 }
